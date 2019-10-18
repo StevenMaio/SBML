@@ -40,6 +40,7 @@ class SBMLTokenizer(object):
         'EQ',
         'NOTEQ',
         'NAME',
+        'HASH',
     ] + list(reserved.values())
 
     # regular expression tokens
@@ -53,6 +54,7 @@ class SBMLTokenizer(object):
     t_RPAREN   = r'\)'
     t_LBRACKET = r'\['
     t_RBRACKET = r'\]'
+    t_HASH     = r'#'
 
     t_LT      = r'<'
     t_GT      = r'>'
