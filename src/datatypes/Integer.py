@@ -1,12 +1,84 @@
 '''
+This module contains the Integer class in SBML
+
+Todos:
+    * Implement this >_>
+    * Make the Exception throws more specific (i.e. have them throw the
+      correct exception)
 '''
+
+import Real
+import Boolean
+
+from Decorators import check_type_match
+
 class Integer:
+    '''
+    Integer class implemented in SBML
+    '''
 
     def __init__(self, value):
         self.mValue = value
 
+    @check_type_match
     def __add__(self, other):
-        if type(other) != Integer:
-            return None
-        else:
-            return Integer(self.mValue + other.mValue)
+        return Integer(self.mValue + other.mValue)
+
+    @check_type_match
+    def __sub__(self, other):
+        return Integer(self.mValue - other.mValue)
+
+    @check_type_match
+    def __mul__(self, other):
+        return Integer(self.mValue * other.mValue)
+
+    @check_type_match
+    def __truediv__(self, other):
+        return Real.Real(self.mValue / other.mValue)
+
+    @check_type_match
+    def __floordiv__(self, other):
+        return Integer(self.mValue//other.mValue)
+
+    @check_type_match
+    def __eq__(self, other):
+        return Boolean.Boolean(self.mValue == other.mValue)
+
+    @check_type_match
+    def __ne__(self, other):
+        return Boolean.Boolean(self.mValue != other.mValue)
+
+    @check_type_match
+    def __lt__(self, other):
+        return Boolean.Boolean(self.mValue < other.mValue)
+
+    @check_type_match
+    def __le__(self, other):
+        return Boolean.Boolean(self.mValue <= other.mValue)
+
+    @check_type_match
+    def __gt__(self, other):
+        return Boolean.Boolean(self.mValue > other.mValue)
+
+    @check_type_match
+    def __ge__(self, other):
+        return Boolean.Boolean(self.mValue >= other.mValue)
+
+    @check_type_match
+    def __mod__(self, other):
+        return Integer(self.mValue % other.mValue)
+
+    def __str__(self):
+        return str(self.mValue)
+
+if __name__ == '__main__':
+    n = Integer(12)
+    z = Real.Real(0.3)
+    j = Integer(3)
+    print(n+j)
+    print(n-j)
+    print(n*j)
+    print(n/j)
+    print(n//j)
+    print(n%j)
+    print(n==j)
