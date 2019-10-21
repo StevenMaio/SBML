@@ -1,6 +1,7 @@
 '''
 This module contains the Boolean implementation in SBML
 '''
+
 from Decorators import check_type_match
 
 class Boolean:
@@ -11,24 +12,31 @@ class Boolean:
     def __init__(self, value):
         self.mValue = value
 
-    def __str__(self):
-        return str(self.mValue)
+    def __repr__(self):
+        return str(self.value)
 
     @check_type_match
     def __and__(self, other):
-        return Boolean(self.mValue and other.mValue)
+        return Boolean(self.value and other.value)
 
     @check_type_match
     def __or__(self, other):
-        return Boolean(self.mValue or other.mValue)
+        return Boolean(self.value or other.value)
 
     @check_type_match
     def __eq__(self, other):
-        return Boolean(self.mValue == other.mValue)
+        return Boolean(self.value == other.value)
 
     @check_type_match
     def __ne__(self, other):
-        return Boolean(self.mValue != other.mValue)
+        return Boolean(self.value != other.value)
+
+    def __bool__(self):
+        return self.value
 
     def __not__(self):
-        return Boolean(not self.mValue)
+        return Boolean(not self.value)
+
+    @property
+    def value(self):
+        return self.mValue
