@@ -1,8 +1,8 @@
 from Decorators import check_type_match
 
-import Integer
-import Boolean
-import Real
+import src.datatypes.Integer as Integer
+import src.datatypes.Boolean as Boolean
+import src.datatypes.Real as Real
 
 class List:
 

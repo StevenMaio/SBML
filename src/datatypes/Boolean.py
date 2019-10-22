@@ -2,7 +2,7 @@
 This module contains the Boolean implementation in SBML
 '''
 
-from Decorators import check_type_match
+from src.datatypes.Decorators import check_type_match
 
 class Boolean:
     '''

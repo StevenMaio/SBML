@@ -1,7 +1,7 @@
 from Decorators import check_type_match
 
-import Integer
-import Boolean
+import src.datatypes.Integer as Integer
+import src.datatypes.Boolean as Boolean
 
 class String:
 

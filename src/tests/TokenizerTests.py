@@ -8,6 +8,8 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[2]
 sys.path.append(str(root))
 
+from src.datatypes.Real import Real
+
 from src.parser.SBMLTokenizer import SBMLTokenizer
 
 class TokenizerTests(unittest.TestCase):
@@ -22,10 +24,10 @@ class TokenizerTests(unittest.TestCase):
                 "-17.02",
         ]
         expected = [
-            (-3.14,  'REAL'),
-            (3.14,   'REAL'),
-            (3.0,   'REAL'),
-            (-17.02, 'REAL'),
+            (Real(-3.14),  'REAL'),
+            (Real(3.14),   'REAL'),
+            (Real(3.0),   'REAL'),
+            (Real(-17.02), 'REAL'),
         ]
         results = reduce(lambda x,y : x+y,
                          map(lambda x: self.tokenizer.test(x),

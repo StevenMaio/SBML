@@ -2,10 +2,10 @@
 This module contains the Real implementation
 '''
 
-import Integer
-import Boolean
+import src.datatypes.Integer as Integer
+import src.datatypes.Boolean as Boolean
 
-from Decorators import check_type_match
+from src.datatypes.Decorators import check_type_match
 
 class Real:
     '''
@@ -59,9 +59,9 @@ class Real:
         return self.mValue
 
 if __name__ == '__main__':
-    n = Integer(12)
-    z = Real.Real(0.3)
-    j = Integer(3)
+    n = Integer.Integer(12)
+    z = Real(0.3)
+    j = Integer.Integer(3)
     print(n+j)
     print(n-j)
     print(n*j)

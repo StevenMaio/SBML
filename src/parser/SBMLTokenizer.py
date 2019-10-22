@@ -7,6 +7,15 @@ Todo:
 
 import ply.lex as lex
 
+# add src to python path
+import sys
+from pathlib import Path
+root = Path(__file__).resolve().parents[2]
+sys.path.append(str(root))
+
+from src.datatypes.Integer import Integer
+from src.datatypes.Real import Real
+
 
 class SBMLTokenizer(object):
     reserved = {
@@ -54,7 +63,7 @@ class SBMLTokenizer(object):
     t_RPAREN   = r'\)'
     t_LBRACKET = r'\['
     t_RBRACKET = r'\]'
-    t_HASH     = r'#'
+    t_HASH     = r'\#'
 
     t_LT      = r'<'
     t_GT      = r'>'
@@ -67,12 +76,12 @@ class SBMLTokenizer(object):
 
     def t_REAL(self, t):
         r'-?\d*\.\d+([eE]-?[1-9]\d*)?'
-        t.value = float(t.value)
+        t.value = Real(float(t.value))
         return t
 
     def t_INTEGER(self, t):
         r'-?[1-9]\d*'
-        t.value = int(t.value)
+        t.value = Integer(int(t.value))
         return t
 
     def t_newline(self, t):

@@ -7,10 +7,12 @@ Todos:
       correct exception)
 '''
 
-import Real
-import Boolean
+import importlib
 
-from Decorators import check_type_match
+import src.datatypes.Real as Real
+import src.datatypes.Boolean as Boolean
+
+from src.datatypes.Decorators import check_type_match
 
 class Integer:
     '''
