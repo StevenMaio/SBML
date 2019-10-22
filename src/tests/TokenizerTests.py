@@ -2,12 +2,6 @@ import unittest
 
 from functools import reduce
 
-# add src to the python path
-import sys
-from pathlib import Path
-root = Path(__file__).resolve().parents[2]
-sys.path.append(str(root))
-
 from src.datatypes.Real import Real
 
 from src.parser.SBMLTokenizer import SBMLTokenizer
