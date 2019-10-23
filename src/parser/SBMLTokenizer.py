@@ -7,12 +7,6 @@ Todo:
 
 import ply.lex as lex
 
-# add src to python path
-import sys
-from pathlib import Path
-root = Path(__file__).resolve().parents[2]
-sys.path.append(str(root))
-
 from src.datatypes.Integer import Integer
 from src.datatypes.Real import Real
 
@@ -50,20 +44,22 @@ class SBMLTokenizer(object):
         'NOTEQ',
         'NAME',
         'HASH',
+        'SEMICOLON',
     ] + list(reserved.values())
 
     # regular expression tokens
-    t_PLUS     = r'\+'
-    t_MINUS    = r'-'
-    t_TIMES    = r'\*'
-    t_EXP      = r'\*\*'
-    t_DIVIDE   = r'/'
-    t_CONS     = r'::'
-    t_LPAREN   = r'\('
-    t_RPAREN   = r'\)'
-    t_LBRACKET = r'\['
-    t_RBRACKET = r'\]'
-    t_HASH     = r'\#'
+    t_PLUS      = r'\+'
+    t_MINUS     = r'-'
+    t_TIMES     = r'\*'
+    t_EXP       = r'\*\*'
+    t_DIVIDE    = r'/'
+    t_CONS      = r'::'
+    t_LPAREN    = r'\('
+    t_RPAREN    = r'\)'
+    t_LBRACKET  = r'\['
+    t_RBRACKET  = r'\]'
+    t_HASH      = r'\#'
+    t_SEMICOLON = r';'
 
     t_LT      = r'<'
     t_GT      = r'>'
@@ -75,12 +71,12 @@ class SBMLTokenizer(object):
     t_ignore = ' \t'
 
     def t_REAL(self, t):
-        r'-?\d*\.\d+([eE]-?[1-9]\d*)?'
+        r'\d*\.\d+([eE]-?[1-9]\d*)?'
         t.value = Real(float(t.value))
         return t
 
     def t_INTEGER(self, t):
-        r'-?[1-9]\d*'
+        r'[1-9]\d*'
         t.value = Integer(int(t.value))
         return t
 
@@ -105,7 +101,8 @@ class SBMLTokenizer(object):
             **kwargs
                 Arguments sent to the lexer
         '''
-        self.mLexer = lex.lex(module=self, **kwargs)
+        self._lexer = None
+        self._lexer = lex.lex(module=self, **kwargs)
 
     def test(self, data, **kwargs):
         '''
@@ -115,18 +112,20 @@ class SBMLTokenizer(object):
             data:
                 the string being processed by the lexer
         '''
-        self.mLexer.input(data, **kwargs)
+        self._lexer.input(data, **kwargs)
         tokens = []
         while True:
-            tok = self.mLexer.token()
+            tok = self._lexer.token()
             if not tok:
                 break
             tokens.append(tok)
         return tokens
 
+    @property
+    def lexer(self):
+        return self._lexer
+
 if __name__ == '__main__':
     l = SBMLTokenizer()
-    l.build()
-    tokens = l.test('-1.3e-2\n2+1')
-    import pdb; pdb.set_trace()
+    tokens = l.test('-1.3e-2\n2+1.0')
     print(tokens)
