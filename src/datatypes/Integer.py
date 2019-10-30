@@ -70,6 +70,9 @@ class Integer:
     def __mod__(self, other):
         return Integer(self.value % other.value)
 
+    def __neg__(self):
+        return Integer(-self.value)
+
     def __repr__(self):
         return str(self.value)
 

@@ -51,6 +51,9 @@ class Real:
     def __gt__(self, other):
         return Boolean.Boolean(self.value > other.value)
 
+    def __neg__(self):
+        return Real(-self.value)
+
     def __repr__(self):
         return str(self.value)
 

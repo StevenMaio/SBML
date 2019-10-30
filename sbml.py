@@ -3,8 +3,9 @@ from src.parser.SBMLParser import SBMLParser
 
 def main(fp, **kwargs):
     text   = fp.read()
-    parser = SBMLParser()
-    parser.parse(text);
+    parser = SBMLParser(**kwargs)
+    for line in text.split('\n')[:-1]:
+        parser.parse(line);
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='runs an SBML file')
@@ -16,7 +17,11 @@ if __name__ == '__main__':
                         '-d',
                         default=False,
                         action='store_true',
-                        help='enable debugging (TODO: enables logging)')
+                        help='enable debugging (for ply)')
+    parser.add_argument('--verbose',
+                        '-v',
+                        default=False,
+                        action='store_true',
+                        help='prints the AST')
     args = vars(parser.parse_args())
-    print(args)
     main(**args)

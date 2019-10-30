@@ -9,6 +9,7 @@ import ply.lex as lex
 
 from src.datatypes.Integer import Integer
 from src.datatypes.Real import Real
+from src.datatypes.String import String
 
 
 class SBMLTokenizer(object):
@@ -45,6 +46,7 @@ class SBMLTokenizer(object):
         'NAME',
         'HASH',
         'SEMICOLON',
+        'STRING',
     ] + list(reserved.values())
 
     # regular expression tokens
@@ -78,6 +80,11 @@ class SBMLTokenizer(object):
     def t_INTEGER(self, t):
         r'[1-9]\d*'
         t.value = Integer(int(t.value))
+        return t
+
+    def t_STRING(self, t):
+        r'".*"|\'.*\''
+        t.value = String(t.value[1:-1])
         return t
 
     def t_newline(self, t):
