@@ -51,6 +51,10 @@ class Real:
     def __gt__(self, other):
         return Boolean.Boolean(self.value > other.value)
 
+    @check_type_match
+    def __pow__(self, other):
+        return Real(self.value ** other.value)
+
     def __neg__(self):
         return Real(-self.value)
 

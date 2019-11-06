@@ -2,12 +2,9 @@
 This module contains the Integer class in SBML
 
 Todos:
-    * Implement this >_>
     * Make the Exception throws more specific (i.e. have them throw the
       correct exception)
 '''
-
-import importlib
 
 import src.datatypes.Real as Real
 import src.datatypes.Boolean as Boolean
@@ -20,7 +17,7 @@ class Integer:
     '''
 
     def __init__(self, value):
-        self.mValue = value
+        self._value = value
 
     @check_type_match
     def __add__(self, other):
@@ -70,15 +67,22 @@ class Integer:
     def __mod__(self, other):
         return Integer(self.value % other.value)
 
+    @check_type_match
+    def __pow__(self, other):
+        return Integer(self.value ** other.value)
+
     def __neg__(self):
         return Integer(-self.value)
 
     def __repr__(self):
         return str(self.value)
 
+    def __index__(self):
+        return self.value
+
     @property
     def value(self):
-        return self.mValue
+        return self._value
 
 if __name__ == '__main__':
     n = Integer(12)

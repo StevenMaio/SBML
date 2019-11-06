@@ -1,4 +1,4 @@
-from Decorators import check_type_match
+from src.datatypes.Decorators import check_type_match
 
 import src.datatypes.Integer as Integer
 import src.datatypes.Boolean as Boolean
@@ -10,55 +10,50 @@ class List:
         '''
         Initialize a List object with value value
         '''
-        self.mType = None
-        self.mValue = value
-        if len(value) > 0:
-            self.mType = type(value[0])
+        self._value = value
 
     @check_type_match
     def __add__(self, other):
         if len(other) == 0:
-            return List(self.mValue)
-        elif len(self):
-            return List(other.mValue)
-        elif self.mType != other.mType:
-            raise Exception
+            return List(self.value)
+        elif len(self) == 0:
+            return List(other.value)
         else:
-            return List(self.mValue + other.mValue)
+            return List(self.value + other.value)
 
     def prepend(self, x):
-        if self.mType == None:
-            self.mValue.insert(0, x)
-            self.mType = type(x)
-        elif self.mType == type(x):
-            self.mValue.insert(0, x)
-        else:
-            raise Exception("Semantic Error")
+        l = self.value.copy()
+        l.insert(0, x)
+        return List(l)
 
     def __contains__(self, x):
-        return Boolean.Boolean(x in self.mValue)
+        return Boolean.Boolean(x in self.value)
 
     def __getitem__(self, index):
         if type(index) != Integer.Integer:
             raise Exception("Semantic Error")
-        elif len(self) <= index.mValue:
+        elif len(self) <= index.value:
             raise Exception("Semantic Error")
         else:
-            return self.mValue[index.value]
+            return self.value[index]
 
     @check_type_match
     def __eq__(self, other):
-        return Boolean.Boolean(self.mValue == other.mValue)
+        return Boolean.Boolean(self.value == other.value)
 
     @check_type_match
     def __ne__(self, other):
-        return Boolean.Boolean(self.mValue != other.mValue)
+        return Boolean.Boolean(self.value != other.value)
 
     def __len__(self):
-        return len(self.mValue)
+        return len(self.value)
 
     def __repr__(self):
-        return str(self.mValue)
+        return str(self.value)
+
+    @property
+    def value(self):
+        return self._value
 
 if __name__ == '__main__':
     l = List()

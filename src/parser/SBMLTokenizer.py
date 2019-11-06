@@ -13,6 +13,7 @@ from src.datatypes.String import String
 
 
 class SBMLTokenizer(object):
+
     reserved = {
         'div':     'DIV',
         'mod':     'MOD',
@@ -37,16 +38,17 @@ class SBMLTokenizer(object):
         'RPAREN',
         'LBRACKET',
         'RBRACKET',
-        'LT',
-        'GT',
         'LTE',
         'GTE',
+        'LT',
+        'GT',
         'EQ',
         'NOTEQ',
         'NAME',
         'HASH',
         'SEMICOLON',
         'STRING',
+        'COMMA',
     ] + list(reserved.values())
 
     # regular expression tokens
@@ -62,15 +64,16 @@ class SBMLTokenizer(object):
     t_RBRACKET  = r'\]'
     t_HASH      = r'\#'
     t_SEMICOLON = r';'
+    t_COMMA     = r','
 
-    t_LT      = r'<'
-    t_GT      = r'>'
     t_LTE     = r'<='
     t_GTE     = r'>='
+    t_LT      = r'<'
+    t_GT      = r'>'
     t_EQ      = r'=='
     t_NOTEQ   = r'<>'
 
-    t_ignore = ' \t'
+    t_ignore  = ' \t'
 
     def t_REAL(self, t):
         r'\d*\.\d+([eE]-?[1-9]\d*)?'
@@ -78,12 +81,12 @@ class SBMLTokenizer(object):
         return t
 
     def t_INTEGER(self, t):
-        r'[1-9]\d*'
+        r'[1-9]\d*|0'
         t.value = Integer(int(t.value))
         return t
 
     def t_STRING(self, t):
-        r'".*"|\'.*\''
+        r'"[^"]*"|\'[^\']*\''
         t.value = String(t.value[1:-1])
         return t
 
@@ -106,7 +109,7 @@ class SBMLTokenizer(object):
 
         Args:
             **kwargs
-                Arguments sent to the lexer
+                key word arguments used to initiliaze the lexer
         '''
         self._lexer = None
         self._lexer = lex.lex(module=self, **kwargs)
@@ -118,6 +121,8 @@ class SBMLTokenizer(object):
         Args:
             data:
                 the string being processed by the lexer
+            kwargs:
+                key word arguments that are passed to the lexer
         '''
         self._lexer.input(data, **kwargs)
         tokens = []

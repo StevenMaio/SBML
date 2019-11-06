@@ -3,7 +3,6 @@ import unittest
 from functools import reduce
 
 from src.datatypes.Real import Real
-
 from src.parser.SBMLTokenizer import SBMLTokenizer
 
 class TokenizerTests(unittest.TestCase):

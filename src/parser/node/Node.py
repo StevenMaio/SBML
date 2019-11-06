@@ -51,8 +51,8 @@ class BinaryOperation:
 
     def __repr__(self):
         return 'BIN-OP: ({}, ({}, {}))'.format(self._operation,
-                                     self._x,
-                                     self._y)
+                                               self._x,
+                                               self._y)
 
 class UnitaryOperation:
 
@@ -69,7 +69,7 @@ class UnitaryOperation:
 
     def __repr__(self):
         return 'UNI-OP: ({}, {})'.format(self._operation,
-                                self._x)
+                                         self._x)
 
 class Expression:
 
@@ -83,4 +83,24 @@ class Expression:
         return self._result
 
     def __repr__(self):
-        return 'EXPR: ()'.format(str(self._value))
+        return 'EXPR: ({})'.format(str(self._value))
+
+operations = {
+    '+':       Function(lambda x,y: x+y, '+'),
+    '-':       Function(lambda x,y: x-y, '-'),
+    '*':       Function(lambda x,y: x*y, '*'),
+    '/':       Function(lambda x,y: x/y, '/'),
+    '<':       Function(lambda x,y: x<y, '<'),
+    '<=':      Function(lambda x,y: x<=y, '<='),
+    '>':       Function(lambda x,y: x>y, '>'),
+    '>=':      Function(lambda x,y: x>=y, '>='),
+    '==':      Function(lambda x,y: x==y, '=='),
+    '<>':      Function(lambda x,y: x!=y, '<>'),
+    'andalso': Function(lambda x,y: x and y, 'AND'),
+    'orelse':  Function(lambda x,y: x or y, 'OR'),
+    'in':      Function(lambda x,y: x in y, 'IN'),
+    'div':     Function(lambda x,y: x//y, 'DIV'),
+    'mod':     Function(lambda x,y: x%y, 'MOD'),
+    '::':      Function(lambda x,y: y.prepend(x), 'CONS'),
+    '**':      Function(lambda x,y : x**y, 'EXP'),
+}

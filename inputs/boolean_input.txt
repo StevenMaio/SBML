@@ -1,0 +1,14 @@
+True;
+False;
+True andalso True;
+True andalso False;
+False andalso True;
+False andalso False;
+True orelse True;
+True orelse False;
+False orelse True;
+False orelse False;
+True == True;
+True <> True;
+True == False;
+True <> False;
