@@ -1,0 +1,2652 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NAME
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> expression SEMICOLON
+Rule 2     expression -> LPAREN expression RPAREN
+Rule 3     expression -> value
+Rule 4     expression -> MINUS expression
+Rule 5     bin_op -> PLUS
+Rule 6     bin_op -> MINUS
+Rule 7     bin_op -> TIMES
+Rule 8     bin_op -> DIVIDE
+Rule 9     bin_op -> LT
+Rule 10    bin_op -> LTE
+Rule 11    bin_op -> GT
+Rule 12    bin_op -> GTE
+Rule 13    bin_op -> EQ
+Rule 14    bin_op -> NOTEQ
+Rule 15    bin_op -> AND
+Rule 16    bin_op -> OR
+Rule 17    bin_op -> IN
+Rule 18    bin_op -> DIV
+Rule 19    bin_op -> MOD
+Rule 20    bin_op -> CONS
+Rule 21    bin_op -> EXP
+Rule 22    expression -> expression bin_op expression
+Rule 23    expression -> uni_op expression
+Rule 24    uni_op -> NOT
+Rule 25    value -> REAL
+Rule 26    value -> INTEGER
+Rule 27    value -> STRING
+Rule 28    value -> list
+Rule 29    value -> bool
+Rule 30    value -> index_expression
+Rule 31    value -> tuple
+Rule 32    value -> hash_expression
+Rule 33    hash_expression -> HASH expression expression
+Rule 34    tuple -> LPAREN expression COMMA tuple_tail
+Rule 35    tuple_tail -> expression COMMA tuple_tail
+Rule 36    tuple_tail -> expression RPAREN
+Rule 37    index_expression -> expression LBRACKET expression RBRACKET
+Rule 38    bool -> TRUE
+Rule 39    bool -> FALSE
+Rule 40    list -> LBRACKET expression list_tail
+Rule 41    list -> LBRACKET RBRACKET
+Rule 42    list_tail -> COMMA expression list_tail
+Rule 43    list_tail -> RBRACKET
+
+Terminals, with rules where they appear
+
+AND                  : 15
+COMMA                : 34 35 42
+CONS                 : 20
+DIV                  : 18
+DIVIDE               : 8
+EQ                   : 13
+EXP                  : 21
+FALSE                : 39
+GT                   : 11
+GTE                  : 12
+HASH                 : 33
+IN                   : 17
+INTEGER              : 26
+LBRACKET             : 37 40 41
+LPAREN               : 2 34
+LT                   : 9
+LTE                  : 10
+MINUS                : 4 6
+MOD                  : 19
+NAME                 : 
+NOT                  : 24
+NOTEQ                : 14
+OR                   : 16
+PLUS                 : 5
+RBRACKET             : 37 41 43
+REAL                 : 25
+RPAREN               : 2 36
+SEMICOLON            : 1
+STRING               : 27
+TIMES                : 7
+TRUE                 : 38
+error                : 
+
+Nonterminals, with rules where they appear
+
+bin_op               : 22
+bool                 : 29
+expression           : 1 2 4 22 22 23 33 33 34 35 36 37 37 40 42
+hash_expression      : 32
+index_expression     : 30
+list                 : 28
+list_tail            : 40 42
+statement            : 0
+tuple                : 31
+tuple_tail           : 34 35
+uni_op               : 23
+value                : 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . expression SEMICOLON
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    statement                      shift and go to state 1
+    expression                     shift and go to state 2
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> expression . SEMICOLON
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+
+    SEMICOLON       shift and go to state 20
+    LBRACKET        shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    LT              shift and go to state 27
+    LTE             shift and go to state 28
+    GT              shift and go to state 29
+    GTE             shift and go to state 30
+    EQ              shift and go to state 31
+    NOTEQ           shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    IN              shift and go to state 35
+    DIV             shift and go to state 36
+    MOD             shift and go to state 37
+    CONS            shift and go to state 38
+    EXP             shift and go to state 39
+
+    bin_op                         shift and go to state 21
+
+state 3
+
+    (2) expression -> LPAREN . expression RPAREN
+    (34) tuple -> LPAREN . expression COMMA tuple_tail
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    expression                     shift and go to state 40
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 4
+
+    (3) expression -> value .
+
+    SEMICOLON       reduce using rule 3 (expression -> value .)
+    LBRACKET        reduce using rule 3 (expression -> value .)
+    PLUS            reduce using rule 3 (expression -> value .)
+    MINUS           reduce using rule 3 (expression -> value .)
+    TIMES           reduce using rule 3 (expression -> value .)
+    DIVIDE          reduce using rule 3 (expression -> value .)
+    LT              reduce using rule 3 (expression -> value .)
+    LTE             reduce using rule 3 (expression -> value .)
+    GT              reduce using rule 3 (expression -> value .)
+    GTE             reduce using rule 3 (expression -> value .)
+    EQ              reduce using rule 3 (expression -> value .)
+    NOTEQ           reduce using rule 3 (expression -> value .)
+    AND             reduce using rule 3 (expression -> value .)
+    OR              reduce using rule 3 (expression -> value .)
+    IN              reduce using rule 3 (expression -> value .)
+    DIV             reduce using rule 3 (expression -> value .)
+    MOD             reduce using rule 3 (expression -> value .)
+    CONS            reduce using rule 3 (expression -> value .)
+    EXP             reduce using rule 3 (expression -> value .)
+    RPAREN          reduce using rule 3 (expression -> value .)
+    COMMA           reduce using rule 3 (expression -> value .)
+    RBRACKET        reduce using rule 3 (expression -> value .)
+    LPAREN          reduce using rule 3 (expression -> value .)
+    REAL            reduce using rule 3 (expression -> value .)
+    INTEGER         reduce using rule 3 (expression -> value .)
+    STRING          reduce using rule 3 (expression -> value .)
+    NOT             reduce using rule 3 (expression -> value .)
+    TRUE            reduce using rule 3 (expression -> value .)
+    FALSE           reduce using rule 3 (expression -> value .)
+    HASH            reduce using rule 3 (expression -> value .)
+
+
+state 5
+
+    (4) expression -> MINUS . expression
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    expression                     shift and go to state 41
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 6
+
+    (23) expression -> uni_op . expression
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    uni_op                         shift and go to state 6
+    expression                     shift and go to state 42
+    value                          shift and go to state 4
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 7
+
+    (25) value -> REAL .
+
+    SEMICOLON       reduce using rule 25 (value -> REAL .)
+    LBRACKET        reduce using rule 25 (value -> REAL .)
+    PLUS            reduce using rule 25 (value -> REAL .)
+    MINUS           reduce using rule 25 (value -> REAL .)
+    TIMES           reduce using rule 25 (value -> REAL .)
+    DIVIDE          reduce using rule 25 (value -> REAL .)
+    LT              reduce using rule 25 (value -> REAL .)
+    LTE             reduce using rule 25 (value -> REAL .)
+    GT              reduce using rule 25 (value -> REAL .)
+    GTE             reduce using rule 25 (value -> REAL .)
+    EQ              reduce using rule 25 (value -> REAL .)
+    NOTEQ           reduce using rule 25 (value -> REAL .)
+    AND             reduce using rule 25 (value -> REAL .)
+    OR              reduce using rule 25 (value -> REAL .)
+    IN              reduce using rule 25 (value -> REAL .)
+    DIV             reduce using rule 25 (value -> REAL .)
+    MOD             reduce using rule 25 (value -> REAL .)
+    CONS            reduce using rule 25 (value -> REAL .)
+    EXP             reduce using rule 25 (value -> REAL .)
+    RPAREN          reduce using rule 25 (value -> REAL .)
+    COMMA           reduce using rule 25 (value -> REAL .)
+    RBRACKET        reduce using rule 25 (value -> REAL .)
+    LPAREN          reduce using rule 25 (value -> REAL .)
+    REAL            reduce using rule 25 (value -> REAL .)
+    INTEGER         reduce using rule 25 (value -> REAL .)
+    STRING          reduce using rule 25 (value -> REAL .)
+    NOT             reduce using rule 25 (value -> REAL .)
+    TRUE            reduce using rule 25 (value -> REAL .)
+    FALSE           reduce using rule 25 (value -> REAL .)
+    HASH            reduce using rule 25 (value -> REAL .)
+
+
+state 8
+
+    (26) value -> INTEGER .
+
+    SEMICOLON       reduce using rule 26 (value -> INTEGER .)
+    LBRACKET        reduce using rule 26 (value -> INTEGER .)
+    PLUS            reduce using rule 26 (value -> INTEGER .)
+    MINUS           reduce using rule 26 (value -> INTEGER .)
+    TIMES           reduce using rule 26 (value -> INTEGER .)
+    DIVIDE          reduce using rule 26 (value -> INTEGER .)
+    LT              reduce using rule 26 (value -> INTEGER .)
+    LTE             reduce using rule 26 (value -> INTEGER .)
+    GT              reduce using rule 26 (value -> INTEGER .)
+    GTE             reduce using rule 26 (value -> INTEGER .)
+    EQ              reduce using rule 26 (value -> INTEGER .)
+    NOTEQ           reduce using rule 26 (value -> INTEGER .)
+    AND             reduce using rule 26 (value -> INTEGER .)
+    OR              reduce using rule 26 (value -> INTEGER .)
+    IN              reduce using rule 26 (value -> INTEGER .)
+    DIV             reduce using rule 26 (value -> INTEGER .)
+    MOD             reduce using rule 26 (value -> INTEGER .)
+    CONS            reduce using rule 26 (value -> INTEGER .)
+    EXP             reduce using rule 26 (value -> INTEGER .)
+    RPAREN          reduce using rule 26 (value -> INTEGER .)
+    COMMA           reduce using rule 26 (value -> INTEGER .)
+    RBRACKET        reduce using rule 26 (value -> INTEGER .)
+    LPAREN          reduce using rule 26 (value -> INTEGER .)
+    REAL            reduce using rule 26 (value -> INTEGER .)
+    INTEGER         reduce using rule 26 (value -> INTEGER .)
+    STRING          reduce using rule 26 (value -> INTEGER .)
+    NOT             reduce using rule 26 (value -> INTEGER .)
+    TRUE            reduce using rule 26 (value -> INTEGER .)
+    FALSE           reduce using rule 26 (value -> INTEGER .)
+    HASH            reduce using rule 26 (value -> INTEGER .)
+
+
+state 9
+
+    (27) value -> STRING .
+
+    SEMICOLON       reduce using rule 27 (value -> STRING .)
+    LBRACKET        reduce using rule 27 (value -> STRING .)
+    PLUS            reduce using rule 27 (value -> STRING .)
+    MINUS           reduce using rule 27 (value -> STRING .)
+    TIMES           reduce using rule 27 (value -> STRING .)
+    DIVIDE          reduce using rule 27 (value -> STRING .)
+    LT              reduce using rule 27 (value -> STRING .)
+    LTE             reduce using rule 27 (value -> STRING .)
+    GT              reduce using rule 27 (value -> STRING .)
+    GTE             reduce using rule 27 (value -> STRING .)
+    EQ              reduce using rule 27 (value -> STRING .)
+    NOTEQ           reduce using rule 27 (value -> STRING .)
+    AND             reduce using rule 27 (value -> STRING .)
+    OR              reduce using rule 27 (value -> STRING .)
+    IN              reduce using rule 27 (value -> STRING .)
+    DIV             reduce using rule 27 (value -> STRING .)
+    MOD             reduce using rule 27 (value -> STRING .)
+    CONS            reduce using rule 27 (value -> STRING .)
+    EXP             reduce using rule 27 (value -> STRING .)
+    RPAREN          reduce using rule 27 (value -> STRING .)
+    COMMA           reduce using rule 27 (value -> STRING .)
+    RBRACKET        reduce using rule 27 (value -> STRING .)
+    LPAREN          reduce using rule 27 (value -> STRING .)
+    REAL            reduce using rule 27 (value -> STRING .)
+    INTEGER         reduce using rule 27 (value -> STRING .)
+    STRING          reduce using rule 27 (value -> STRING .)
+    NOT             reduce using rule 27 (value -> STRING .)
+    TRUE            reduce using rule 27 (value -> STRING .)
+    FALSE           reduce using rule 27 (value -> STRING .)
+    HASH            reduce using rule 27 (value -> STRING .)
+
+
+state 10
+
+    (28) value -> list .
+
+    SEMICOLON       reduce using rule 28 (value -> list .)
+    LBRACKET        reduce using rule 28 (value -> list .)
+    PLUS            reduce using rule 28 (value -> list .)
+    MINUS           reduce using rule 28 (value -> list .)
+    TIMES           reduce using rule 28 (value -> list .)
+    DIVIDE          reduce using rule 28 (value -> list .)
+    LT              reduce using rule 28 (value -> list .)
+    LTE             reduce using rule 28 (value -> list .)
+    GT              reduce using rule 28 (value -> list .)
+    GTE             reduce using rule 28 (value -> list .)
+    EQ              reduce using rule 28 (value -> list .)
+    NOTEQ           reduce using rule 28 (value -> list .)
+    AND             reduce using rule 28 (value -> list .)
+    OR              reduce using rule 28 (value -> list .)
+    IN              reduce using rule 28 (value -> list .)
+    DIV             reduce using rule 28 (value -> list .)
+    MOD             reduce using rule 28 (value -> list .)
+    CONS            reduce using rule 28 (value -> list .)
+    EXP             reduce using rule 28 (value -> list .)
+    RPAREN          reduce using rule 28 (value -> list .)
+    COMMA           reduce using rule 28 (value -> list .)
+    RBRACKET        reduce using rule 28 (value -> list .)
+    LPAREN          reduce using rule 28 (value -> list .)
+    REAL            reduce using rule 28 (value -> list .)
+    INTEGER         reduce using rule 28 (value -> list .)
+    STRING          reduce using rule 28 (value -> list .)
+    NOT             reduce using rule 28 (value -> list .)
+    TRUE            reduce using rule 28 (value -> list .)
+    FALSE           reduce using rule 28 (value -> list .)
+    HASH            reduce using rule 28 (value -> list .)
+
+
+state 11
+
+    (29) value -> bool .
+
+    SEMICOLON       reduce using rule 29 (value -> bool .)
+    LBRACKET        reduce using rule 29 (value -> bool .)
+    PLUS            reduce using rule 29 (value -> bool .)
+    MINUS           reduce using rule 29 (value -> bool .)
+    TIMES           reduce using rule 29 (value -> bool .)
+    DIVIDE          reduce using rule 29 (value -> bool .)
+    LT              reduce using rule 29 (value -> bool .)
+    LTE             reduce using rule 29 (value -> bool .)
+    GT              reduce using rule 29 (value -> bool .)
+    GTE             reduce using rule 29 (value -> bool .)
+    EQ              reduce using rule 29 (value -> bool .)
+    NOTEQ           reduce using rule 29 (value -> bool .)
+    AND             reduce using rule 29 (value -> bool .)
+    OR              reduce using rule 29 (value -> bool .)
+    IN              reduce using rule 29 (value -> bool .)
+    DIV             reduce using rule 29 (value -> bool .)
+    MOD             reduce using rule 29 (value -> bool .)
+    CONS            reduce using rule 29 (value -> bool .)
+    EXP             reduce using rule 29 (value -> bool .)
+    RPAREN          reduce using rule 29 (value -> bool .)
+    COMMA           reduce using rule 29 (value -> bool .)
+    RBRACKET        reduce using rule 29 (value -> bool .)
+    LPAREN          reduce using rule 29 (value -> bool .)
+    REAL            reduce using rule 29 (value -> bool .)
+    INTEGER         reduce using rule 29 (value -> bool .)
+    STRING          reduce using rule 29 (value -> bool .)
+    NOT             reduce using rule 29 (value -> bool .)
+    TRUE            reduce using rule 29 (value -> bool .)
+    FALSE           reduce using rule 29 (value -> bool .)
+    HASH            reduce using rule 29 (value -> bool .)
+
+
+state 12
+
+    (30) value -> index_expression .
+
+    SEMICOLON       reduce using rule 30 (value -> index_expression .)
+    LBRACKET        reduce using rule 30 (value -> index_expression .)
+    PLUS            reduce using rule 30 (value -> index_expression .)
+    MINUS           reduce using rule 30 (value -> index_expression .)
+    TIMES           reduce using rule 30 (value -> index_expression .)
+    DIVIDE          reduce using rule 30 (value -> index_expression .)
+    LT              reduce using rule 30 (value -> index_expression .)
+    LTE             reduce using rule 30 (value -> index_expression .)
+    GT              reduce using rule 30 (value -> index_expression .)
+    GTE             reduce using rule 30 (value -> index_expression .)
+    EQ              reduce using rule 30 (value -> index_expression .)
+    NOTEQ           reduce using rule 30 (value -> index_expression .)
+    AND             reduce using rule 30 (value -> index_expression .)
+    OR              reduce using rule 30 (value -> index_expression .)
+    IN              reduce using rule 30 (value -> index_expression .)
+    DIV             reduce using rule 30 (value -> index_expression .)
+    MOD             reduce using rule 30 (value -> index_expression .)
+    CONS            reduce using rule 30 (value -> index_expression .)
+    EXP             reduce using rule 30 (value -> index_expression .)
+    RPAREN          reduce using rule 30 (value -> index_expression .)
+    COMMA           reduce using rule 30 (value -> index_expression .)
+    RBRACKET        reduce using rule 30 (value -> index_expression .)
+    LPAREN          reduce using rule 30 (value -> index_expression .)
+    REAL            reduce using rule 30 (value -> index_expression .)
+    INTEGER         reduce using rule 30 (value -> index_expression .)
+    STRING          reduce using rule 30 (value -> index_expression .)
+    NOT             reduce using rule 30 (value -> index_expression .)
+    TRUE            reduce using rule 30 (value -> index_expression .)
+    FALSE           reduce using rule 30 (value -> index_expression .)
+    HASH            reduce using rule 30 (value -> index_expression .)
+
+
+state 13
+
+    (31) value -> tuple .
+
+    SEMICOLON       reduce using rule 31 (value -> tuple .)
+    LBRACKET        reduce using rule 31 (value -> tuple .)
+    PLUS            reduce using rule 31 (value -> tuple .)
+    MINUS           reduce using rule 31 (value -> tuple .)
+    TIMES           reduce using rule 31 (value -> tuple .)
+    DIVIDE          reduce using rule 31 (value -> tuple .)
+    LT              reduce using rule 31 (value -> tuple .)
+    LTE             reduce using rule 31 (value -> tuple .)
+    GT              reduce using rule 31 (value -> tuple .)
+    GTE             reduce using rule 31 (value -> tuple .)
+    EQ              reduce using rule 31 (value -> tuple .)
+    NOTEQ           reduce using rule 31 (value -> tuple .)
+    AND             reduce using rule 31 (value -> tuple .)
+    OR              reduce using rule 31 (value -> tuple .)
+    IN              reduce using rule 31 (value -> tuple .)
+    DIV             reduce using rule 31 (value -> tuple .)
+    MOD             reduce using rule 31 (value -> tuple .)
+    CONS            reduce using rule 31 (value -> tuple .)
+    EXP             reduce using rule 31 (value -> tuple .)
+    RPAREN          reduce using rule 31 (value -> tuple .)
+    COMMA           reduce using rule 31 (value -> tuple .)
+    RBRACKET        reduce using rule 31 (value -> tuple .)
+    LPAREN          reduce using rule 31 (value -> tuple .)
+    REAL            reduce using rule 31 (value -> tuple .)
+    INTEGER         reduce using rule 31 (value -> tuple .)
+    STRING          reduce using rule 31 (value -> tuple .)
+    NOT             reduce using rule 31 (value -> tuple .)
+    TRUE            reduce using rule 31 (value -> tuple .)
+    FALSE           reduce using rule 31 (value -> tuple .)
+    HASH            reduce using rule 31 (value -> tuple .)
+
+
+state 14
+
+    (32) value -> hash_expression .
+
+    SEMICOLON       reduce using rule 32 (value -> hash_expression .)
+    LBRACKET        reduce using rule 32 (value -> hash_expression .)
+    PLUS            reduce using rule 32 (value -> hash_expression .)
+    MINUS           reduce using rule 32 (value -> hash_expression .)
+    TIMES           reduce using rule 32 (value -> hash_expression .)
+    DIVIDE          reduce using rule 32 (value -> hash_expression .)
+    LT              reduce using rule 32 (value -> hash_expression .)
+    LTE             reduce using rule 32 (value -> hash_expression .)
+    GT              reduce using rule 32 (value -> hash_expression .)
+    GTE             reduce using rule 32 (value -> hash_expression .)
+    EQ              reduce using rule 32 (value -> hash_expression .)
+    NOTEQ           reduce using rule 32 (value -> hash_expression .)
+    AND             reduce using rule 32 (value -> hash_expression .)
+    OR              reduce using rule 32 (value -> hash_expression .)
+    IN              reduce using rule 32 (value -> hash_expression .)
+    DIV             reduce using rule 32 (value -> hash_expression .)
+    MOD             reduce using rule 32 (value -> hash_expression .)
+    CONS            reduce using rule 32 (value -> hash_expression .)
+    EXP             reduce using rule 32 (value -> hash_expression .)
+    RPAREN          reduce using rule 32 (value -> hash_expression .)
+    COMMA           reduce using rule 32 (value -> hash_expression .)
+    RBRACKET        reduce using rule 32 (value -> hash_expression .)
+    LPAREN          reduce using rule 32 (value -> hash_expression .)
+    REAL            reduce using rule 32 (value -> hash_expression .)
+    INTEGER         reduce using rule 32 (value -> hash_expression .)
+    STRING          reduce using rule 32 (value -> hash_expression .)
+    NOT             reduce using rule 32 (value -> hash_expression .)
+    TRUE            reduce using rule 32 (value -> hash_expression .)
+    FALSE           reduce using rule 32 (value -> hash_expression .)
+    HASH            reduce using rule 32 (value -> hash_expression .)
+
+
+state 15
+
+    (24) uni_op -> NOT .
+
+    LPAREN          reduce using rule 24 (uni_op -> NOT .)
+    MINUS           reduce using rule 24 (uni_op -> NOT .)
+    REAL            reduce using rule 24 (uni_op -> NOT .)
+    INTEGER         reduce using rule 24 (uni_op -> NOT .)
+    STRING          reduce using rule 24 (uni_op -> NOT .)
+    NOT             reduce using rule 24 (uni_op -> NOT .)
+    LBRACKET        reduce using rule 24 (uni_op -> NOT .)
+    TRUE            reduce using rule 24 (uni_op -> NOT .)
+    FALSE           reduce using rule 24 (uni_op -> NOT .)
+    HASH            reduce using rule 24 (uni_op -> NOT .)
+
+
+state 16
+
+    (40) list -> LBRACKET . expression list_tail
+    (41) list -> LBRACKET . RBRACKET
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    RBRACKET        shift and go to state 44
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    expression                     shift and go to state 43
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 17
+
+    (38) bool -> TRUE .
+
+    SEMICOLON       reduce using rule 38 (bool -> TRUE .)
+    LBRACKET        reduce using rule 38 (bool -> TRUE .)
+    PLUS            reduce using rule 38 (bool -> TRUE .)
+    MINUS           reduce using rule 38 (bool -> TRUE .)
+    TIMES           reduce using rule 38 (bool -> TRUE .)
+    DIVIDE          reduce using rule 38 (bool -> TRUE .)
+    LT              reduce using rule 38 (bool -> TRUE .)
+    LTE             reduce using rule 38 (bool -> TRUE .)
+    GT              reduce using rule 38 (bool -> TRUE .)
+    GTE             reduce using rule 38 (bool -> TRUE .)
+    EQ              reduce using rule 38 (bool -> TRUE .)
+    NOTEQ           reduce using rule 38 (bool -> TRUE .)
+    AND             reduce using rule 38 (bool -> TRUE .)
+    OR              reduce using rule 38 (bool -> TRUE .)
+    IN              reduce using rule 38 (bool -> TRUE .)
+    DIV             reduce using rule 38 (bool -> TRUE .)
+    MOD             reduce using rule 38 (bool -> TRUE .)
+    CONS            reduce using rule 38 (bool -> TRUE .)
+    EXP             reduce using rule 38 (bool -> TRUE .)
+    RPAREN          reduce using rule 38 (bool -> TRUE .)
+    COMMA           reduce using rule 38 (bool -> TRUE .)
+    RBRACKET        reduce using rule 38 (bool -> TRUE .)
+    LPAREN          reduce using rule 38 (bool -> TRUE .)
+    REAL            reduce using rule 38 (bool -> TRUE .)
+    INTEGER         reduce using rule 38 (bool -> TRUE .)
+    STRING          reduce using rule 38 (bool -> TRUE .)
+    NOT             reduce using rule 38 (bool -> TRUE .)
+    TRUE            reduce using rule 38 (bool -> TRUE .)
+    FALSE           reduce using rule 38 (bool -> TRUE .)
+    HASH            reduce using rule 38 (bool -> TRUE .)
+
+
+state 18
+
+    (39) bool -> FALSE .
+
+    SEMICOLON       reduce using rule 39 (bool -> FALSE .)
+    LBRACKET        reduce using rule 39 (bool -> FALSE .)
+    PLUS            reduce using rule 39 (bool -> FALSE .)
+    MINUS           reduce using rule 39 (bool -> FALSE .)
+    TIMES           reduce using rule 39 (bool -> FALSE .)
+    DIVIDE          reduce using rule 39 (bool -> FALSE .)
+    LT              reduce using rule 39 (bool -> FALSE .)
+    LTE             reduce using rule 39 (bool -> FALSE .)
+    GT              reduce using rule 39 (bool -> FALSE .)
+    GTE             reduce using rule 39 (bool -> FALSE .)
+    EQ              reduce using rule 39 (bool -> FALSE .)
+    NOTEQ           reduce using rule 39 (bool -> FALSE .)
+    AND             reduce using rule 39 (bool -> FALSE .)
+    OR              reduce using rule 39 (bool -> FALSE .)
+    IN              reduce using rule 39 (bool -> FALSE .)
+    DIV             reduce using rule 39 (bool -> FALSE .)
+    MOD             reduce using rule 39 (bool -> FALSE .)
+    CONS            reduce using rule 39 (bool -> FALSE .)
+    EXP             reduce using rule 39 (bool -> FALSE .)
+    RPAREN          reduce using rule 39 (bool -> FALSE .)
+    COMMA           reduce using rule 39 (bool -> FALSE .)
+    RBRACKET        reduce using rule 39 (bool -> FALSE .)
+    LPAREN          reduce using rule 39 (bool -> FALSE .)
+    REAL            reduce using rule 39 (bool -> FALSE .)
+    INTEGER         reduce using rule 39 (bool -> FALSE .)
+    STRING          reduce using rule 39 (bool -> FALSE .)
+    NOT             reduce using rule 39 (bool -> FALSE .)
+    TRUE            reduce using rule 39 (bool -> FALSE .)
+    FALSE           reduce using rule 39 (bool -> FALSE .)
+    HASH            reduce using rule 39 (bool -> FALSE .)
+
+
+state 19
+
+    (33) hash_expression -> HASH . expression expression
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    expression                     shift and go to state 45
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 20
+
+    (1) statement -> expression SEMICOLON .
+
+    $end            reduce using rule 1 (statement -> expression SEMICOLON .)
+
+
+state 21
+
+    (22) expression -> expression bin_op . expression
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    expression                     shift and go to state 46
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 22
+
+    (37) index_expression -> expression LBRACKET . expression RBRACKET
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    expression                     shift and go to state 47
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 23
+
+    (5) bin_op -> PLUS .
+
+    LPAREN          reduce using rule 5 (bin_op -> PLUS .)
+    MINUS           reduce using rule 5 (bin_op -> PLUS .)
+    REAL            reduce using rule 5 (bin_op -> PLUS .)
+    INTEGER         reduce using rule 5 (bin_op -> PLUS .)
+    STRING          reduce using rule 5 (bin_op -> PLUS .)
+    NOT             reduce using rule 5 (bin_op -> PLUS .)
+    LBRACKET        reduce using rule 5 (bin_op -> PLUS .)
+    TRUE            reduce using rule 5 (bin_op -> PLUS .)
+    FALSE           reduce using rule 5 (bin_op -> PLUS .)
+    HASH            reduce using rule 5 (bin_op -> PLUS .)
+
+
+state 24
+
+    (6) bin_op -> MINUS .
+
+    LPAREN          reduce using rule 6 (bin_op -> MINUS .)
+    MINUS           reduce using rule 6 (bin_op -> MINUS .)
+    REAL            reduce using rule 6 (bin_op -> MINUS .)
+    INTEGER         reduce using rule 6 (bin_op -> MINUS .)
+    STRING          reduce using rule 6 (bin_op -> MINUS .)
+    NOT             reduce using rule 6 (bin_op -> MINUS .)
+    LBRACKET        reduce using rule 6 (bin_op -> MINUS .)
+    TRUE            reduce using rule 6 (bin_op -> MINUS .)
+    FALSE           reduce using rule 6 (bin_op -> MINUS .)
+    HASH            reduce using rule 6 (bin_op -> MINUS .)
+
+
+state 25
+
+    (7) bin_op -> TIMES .
+
+    LPAREN          reduce using rule 7 (bin_op -> TIMES .)
+    MINUS           reduce using rule 7 (bin_op -> TIMES .)
+    REAL            reduce using rule 7 (bin_op -> TIMES .)
+    INTEGER         reduce using rule 7 (bin_op -> TIMES .)
+    STRING          reduce using rule 7 (bin_op -> TIMES .)
+    NOT             reduce using rule 7 (bin_op -> TIMES .)
+    LBRACKET        reduce using rule 7 (bin_op -> TIMES .)
+    TRUE            reduce using rule 7 (bin_op -> TIMES .)
+    FALSE           reduce using rule 7 (bin_op -> TIMES .)
+    HASH            reduce using rule 7 (bin_op -> TIMES .)
+
+
+state 26
+
+    (8) bin_op -> DIVIDE .
+
+    LPAREN          reduce using rule 8 (bin_op -> DIVIDE .)
+    MINUS           reduce using rule 8 (bin_op -> DIVIDE .)
+    REAL            reduce using rule 8 (bin_op -> DIVIDE .)
+    INTEGER         reduce using rule 8 (bin_op -> DIVIDE .)
+    STRING          reduce using rule 8 (bin_op -> DIVIDE .)
+    NOT             reduce using rule 8 (bin_op -> DIVIDE .)
+    LBRACKET        reduce using rule 8 (bin_op -> DIVIDE .)
+    TRUE            reduce using rule 8 (bin_op -> DIVIDE .)
+    FALSE           reduce using rule 8 (bin_op -> DIVIDE .)
+    HASH            reduce using rule 8 (bin_op -> DIVIDE .)
+
+
+state 27
+
+    (9) bin_op -> LT .
+
+    LPAREN          reduce using rule 9 (bin_op -> LT .)
+    MINUS           reduce using rule 9 (bin_op -> LT .)
+    REAL            reduce using rule 9 (bin_op -> LT .)
+    INTEGER         reduce using rule 9 (bin_op -> LT .)
+    STRING          reduce using rule 9 (bin_op -> LT .)
+    NOT             reduce using rule 9 (bin_op -> LT .)
+    LBRACKET        reduce using rule 9 (bin_op -> LT .)
+    TRUE            reduce using rule 9 (bin_op -> LT .)
+    FALSE           reduce using rule 9 (bin_op -> LT .)
+    HASH            reduce using rule 9 (bin_op -> LT .)
+
+
+state 28
+
+    (10) bin_op -> LTE .
+
+    LPAREN          reduce using rule 10 (bin_op -> LTE .)
+    MINUS           reduce using rule 10 (bin_op -> LTE .)
+    REAL            reduce using rule 10 (bin_op -> LTE .)
+    INTEGER         reduce using rule 10 (bin_op -> LTE .)
+    STRING          reduce using rule 10 (bin_op -> LTE .)
+    NOT             reduce using rule 10 (bin_op -> LTE .)
+    LBRACKET        reduce using rule 10 (bin_op -> LTE .)
+    TRUE            reduce using rule 10 (bin_op -> LTE .)
+    FALSE           reduce using rule 10 (bin_op -> LTE .)
+    HASH            reduce using rule 10 (bin_op -> LTE .)
+
+
+state 29
+
+    (11) bin_op -> GT .
+
+    LPAREN          reduce using rule 11 (bin_op -> GT .)
+    MINUS           reduce using rule 11 (bin_op -> GT .)
+    REAL            reduce using rule 11 (bin_op -> GT .)
+    INTEGER         reduce using rule 11 (bin_op -> GT .)
+    STRING          reduce using rule 11 (bin_op -> GT .)
+    NOT             reduce using rule 11 (bin_op -> GT .)
+    LBRACKET        reduce using rule 11 (bin_op -> GT .)
+    TRUE            reduce using rule 11 (bin_op -> GT .)
+    FALSE           reduce using rule 11 (bin_op -> GT .)
+    HASH            reduce using rule 11 (bin_op -> GT .)
+
+
+state 30
+
+    (12) bin_op -> GTE .
+
+    LPAREN          reduce using rule 12 (bin_op -> GTE .)
+    MINUS           reduce using rule 12 (bin_op -> GTE .)
+    REAL            reduce using rule 12 (bin_op -> GTE .)
+    INTEGER         reduce using rule 12 (bin_op -> GTE .)
+    STRING          reduce using rule 12 (bin_op -> GTE .)
+    NOT             reduce using rule 12 (bin_op -> GTE .)
+    LBRACKET        reduce using rule 12 (bin_op -> GTE .)
+    TRUE            reduce using rule 12 (bin_op -> GTE .)
+    FALSE           reduce using rule 12 (bin_op -> GTE .)
+    HASH            reduce using rule 12 (bin_op -> GTE .)
+
+
+state 31
+
+    (13) bin_op -> EQ .
+
+    LPAREN          reduce using rule 13 (bin_op -> EQ .)
+    MINUS           reduce using rule 13 (bin_op -> EQ .)
+    REAL            reduce using rule 13 (bin_op -> EQ .)
+    INTEGER         reduce using rule 13 (bin_op -> EQ .)
+    STRING          reduce using rule 13 (bin_op -> EQ .)
+    NOT             reduce using rule 13 (bin_op -> EQ .)
+    LBRACKET        reduce using rule 13 (bin_op -> EQ .)
+    TRUE            reduce using rule 13 (bin_op -> EQ .)
+    FALSE           reduce using rule 13 (bin_op -> EQ .)
+    HASH            reduce using rule 13 (bin_op -> EQ .)
+
+
+state 32
+
+    (14) bin_op -> NOTEQ .
+
+    LPAREN          reduce using rule 14 (bin_op -> NOTEQ .)
+    MINUS           reduce using rule 14 (bin_op -> NOTEQ .)
+    REAL            reduce using rule 14 (bin_op -> NOTEQ .)
+    INTEGER         reduce using rule 14 (bin_op -> NOTEQ .)
+    STRING          reduce using rule 14 (bin_op -> NOTEQ .)
+    NOT             reduce using rule 14 (bin_op -> NOTEQ .)
+    LBRACKET        reduce using rule 14 (bin_op -> NOTEQ .)
+    TRUE            reduce using rule 14 (bin_op -> NOTEQ .)
+    FALSE           reduce using rule 14 (bin_op -> NOTEQ .)
+    HASH            reduce using rule 14 (bin_op -> NOTEQ .)
+
+
+state 33
+
+    (15) bin_op -> AND .
+
+    LPAREN          reduce using rule 15 (bin_op -> AND .)
+    MINUS           reduce using rule 15 (bin_op -> AND .)
+    REAL            reduce using rule 15 (bin_op -> AND .)
+    INTEGER         reduce using rule 15 (bin_op -> AND .)
+    STRING          reduce using rule 15 (bin_op -> AND .)
+    NOT             reduce using rule 15 (bin_op -> AND .)
+    LBRACKET        reduce using rule 15 (bin_op -> AND .)
+    TRUE            reduce using rule 15 (bin_op -> AND .)
+    FALSE           reduce using rule 15 (bin_op -> AND .)
+    HASH            reduce using rule 15 (bin_op -> AND .)
+
+
+state 34
+
+    (16) bin_op -> OR .
+
+    LPAREN          reduce using rule 16 (bin_op -> OR .)
+    MINUS           reduce using rule 16 (bin_op -> OR .)
+    REAL            reduce using rule 16 (bin_op -> OR .)
+    INTEGER         reduce using rule 16 (bin_op -> OR .)
+    STRING          reduce using rule 16 (bin_op -> OR .)
+    NOT             reduce using rule 16 (bin_op -> OR .)
+    LBRACKET        reduce using rule 16 (bin_op -> OR .)
+    TRUE            reduce using rule 16 (bin_op -> OR .)
+    FALSE           reduce using rule 16 (bin_op -> OR .)
+    HASH            reduce using rule 16 (bin_op -> OR .)
+
+
+state 35
+
+    (17) bin_op -> IN .
+
+    LPAREN          reduce using rule 17 (bin_op -> IN .)
+    MINUS           reduce using rule 17 (bin_op -> IN .)
+    REAL            reduce using rule 17 (bin_op -> IN .)
+    INTEGER         reduce using rule 17 (bin_op -> IN .)
+    STRING          reduce using rule 17 (bin_op -> IN .)
+    NOT             reduce using rule 17 (bin_op -> IN .)
+    LBRACKET        reduce using rule 17 (bin_op -> IN .)
+    TRUE            reduce using rule 17 (bin_op -> IN .)
+    FALSE           reduce using rule 17 (bin_op -> IN .)
+    HASH            reduce using rule 17 (bin_op -> IN .)
+
+
+state 36
+
+    (18) bin_op -> DIV .
+
+    LPAREN          reduce using rule 18 (bin_op -> DIV .)
+    MINUS           reduce using rule 18 (bin_op -> DIV .)
+    REAL            reduce using rule 18 (bin_op -> DIV .)
+    INTEGER         reduce using rule 18 (bin_op -> DIV .)
+    STRING          reduce using rule 18 (bin_op -> DIV .)
+    NOT             reduce using rule 18 (bin_op -> DIV .)
+    LBRACKET        reduce using rule 18 (bin_op -> DIV .)
+    TRUE            reduce using rule 18 (bin_op -> DIV .)
+    FALSE           reduce using rule 18 (bin_op -> DIV .)
+    HASH            reduce using rule 18 (bin_op -> DIV .)
+
+
+state 37
+
+    (19) bin_op -> MOD .
+
+    LPAREN          reduce using rule 19 (bin_op -> MOD .)
+    MINUS           reduce using rule 19 (bin_op -> MOD .)
+    REAL            reduce using rule 19 (bin_op -> MOD .)
+    INTEGER         reduce using rule 19 (bin_op -> MOD .)
+    STRING          reduce using rule 19 (bin_op -> MOD .)
+    NOT             reduce using rule 19 (bin_op -> MOD .)
+    LBRACKET        reduce using rule 19 (bin_op -> MOD .)
+    TRUE            reduce using rule 19 (bin_op -> MOD .)
+    FALSE           reduce using rule 19 (bin_op -> MOD .)
+    HASH            reduce using rule 19 (bin_op -> MOD .)
+
+
+state 38
+
+    (20) bin_op -> CONS .
+
+    LPAREN          reduce using rule 20 (bin_op -> CONS .)
+    MINUS           reduce using rule 20 (bin_op -> CONS .)
+    REAL            reduce using rule 20 (bin_op -> CONS .)
+    INTEGER         reduce using rule 20 (bin_op -> CONS .)
+    STRING          reduce using rule 20 (bin_op -> CONS .)
+    NOT             reduce using rule 20 (bin_op -> CONS .)
+    LBRACKET        reduce using rule 20 (bin_op -> CONS .)
+    TRUE            reduce using rule 20 (bin_op -> CONS .)
+    FALSE           reduce using rule 20 (bin_op -> CONS .)
+    HASH            reduce using rule 20 (bin_op -> CONS .)
+
+
+state 39
+
+    (21) bin_op -> EXP .
+
+    LPAREN          reduce using rule 21 (bin_op -> EXP .)
+    MINUS           reduce using rule 21 (bin_op -> EXP .)
+    REAL            reduce using rule 21 (bin_op -> EXP .)
+    INTEGER         reduce using rule 21 (bin_op -> EXP .)
+    STRING          reduce using rule 21 (bin_op -> EXP .)
+    NOT             reduce using rule 21 (bin_op -> EXP .)
+    LBRACKET        reduce using rule 21 (bin_op -> EXP .)
+    TRUE            reduce using rule 21 (bin_op -> EXP .)
+    FALSE           reduce using rule 21 (bin_op -> EXP .)
+    HASH            reduce using rule 21 (bin_op -> EXP .)
+
+
+state 40
+
+    (2) expression -> LPAREN expression . RPAREN
+    (34) tuple -> LPAREN expression . COMMA tuple_tail
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+
+    RPAREN          shift and go to state 48
+    COMMA           shift and go to state 49
+    LBRACKET        shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    LT              shift and go to state 27
+    LTE             shift and go to state 28
+    GT              shift and go to state 29
+    GTE             shift and go to state 30
+    EQ              shift and go to state 31
+    NOTEQ           shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    IN              shift and go to state 35
+    DIV             shift and go to state 36
+    MOD             shift and go to state 37
+    CONS            shift and go to state 38
+    EXP             shift and go to state 39
+
+    bin_op                         shift and go to state 21
+
+state 41
+
+    (4) expression -> MINUS expression .
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+
+    SEMICOLON       reduce using rule 4 (expression -> MINUS expression .)
+    LBRACKET        reduce using rule 4 (expression -> MINUS expression .)
+    PLUS            reduce using rule 4 (expression -> MINUS expression .)
+    MINUS           reduce using rule 4 (expression -> MINUS expression .)
+    TIMES           reduce using rule 4 (expression -> MINUS expression .)
+    DIVIDE          reduce using rule 4 (expression -> MINUS expression .)
+    LT              reduce using rule 4 (expression -> MINUS expression .)
+    LTE             reduce using rule 4 (expression -> MINUS expression .)
+    GT              reduce using rule 4 (expression -> MINUS expression .)
+    GTE             reduce using rule 4 (expression -> MINUS expression .)
+    EQ              reduce using rule 4 (expression -> MINUS expression .)
+    NOTEQ           reduce using rule 4 (expression -> MINUS expression .)
+    AND             reduce using rule 4 (expression -> MINUS expression .)
+    OR              reduce using rule 4 (expression -> MINUS expression .)
+    IN              reduce using rule 4 (expression -> MINUS expression .)
+    DIV             reduce using rule 4 (expression -> MINUS expression .)
+    MOD             reduce using rule 4 (expression -> MINUS expression .)
+    CONS            reduce using rule 4 (expression -> MINUS expression .)
+    RPAREN          reduce using rule 4 (expression -> MINUS expression .)
+    COMMA           reduce using rule 4 (expression -> MINUS expression .)
+    RBRACKET        reduce using rule 4 (expression -> MINUS expression .)
+    LPAREN          reduce using rule 4 (expression -> MINUS expression .)
+    REAL            reduce using rule 4 (expression -> MINUS expression .)
+    INTEGER         reduce using rule 4 (expression -> MINUS expression .)
+    STRING          reduce using rule 4 (expression -> MINUS expression .)
+    NOT             reduce using rule 4 (expression -> MINUS expression .)
+    TRUE            reduce using rule 4 (expression -> MINUS expression .)
+    FALSE           reduce using rule 4 (expression -> MINUS expression .)
+    HASH            reduce using rule 4 (expression -> MINUS expression .)
+    EXP             shift and go to state 39
+
+  ! EXP             [ reduce using rule 4 (expression -> MINUS expression .) ]
+  ! LBRACKET        [ shift and go to state 22 ]
+  ! PLUS            [ shift and go to state 23 ]
+  ! MINUS           [ shift and go to state 24 ]
+  ! TIMES           [ shift and go to state 25 ]
+  ! DIVIDE          [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! LTE             [ shift and go to state 28 ]
+  ! GT              [ shift and go to state 29 ]
+  ! GTE             [ shift and go to state 30 ]
+  ! EQ              [ shift and go to state 31 ]
+  ! NOTEQ           [ shift and go to state 32 ]
+  ! AND             [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 34 ]
+  ! IN              [ shift and go to state 35 ]
+  ! DIV             [ shift and go to state 36 ]
+  ! MOD             [ shift and go to state 37 ]
+  ! CONS            [ shift and go to state 38 ]
+
+    bin_op                         shift and go to state 21
+
+state 42
+
+    (23) expression -> uni_op expression .
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+
+  ! shift/reduce conflict for LBRACKET resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NOTEQ resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IN resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for CONS resolved as shift
+  ! shift/reduce conflict for EXP resolved as shift
+    SEMICOLON       reduce using rule 23 (expression -> uni_op expression .)
+    RPAREN          reduce using rule 23 (expression -> uni_op expression .)
+    COMMA           reduce using rule 23 (expression -> uni_op expression .)
+    RBRACKET        reduce using rule 23 (expression -> uni_op expression .)
+    LPAREN          reduce using rule 23 (expression -> uni_op expression .)
+    REAL            reduce using rule 23 (expression -> uni_op expression .)
+    INTEGER         reduce using rule 23 (expression -> uni_op expression .)
+    STRING          reduce using rule 23 (expression -> uni_op expression .)
+    NOT             reduce using rule 23 (expression -> uni_op expression .)
+    TRUE            reduce using rule 23 (expression -> uni_op expression .)
+    FALSE           reduce using rule 23 (expression -> uni_op expression .)
+    HASH            reduce using rule 23 (expression -> uni_op expression .)
+    LBRACKET        shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    LT              shift and go to state 27
+    LTE             shift and go to state 28
+    GT              shift and go to state 29
+    GTE             shift and go to state 30
+    EQ              shift and go to state 31
+    NOTEQ           shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    IN              shift and go to state 35
+    DIV             shift and go to state 36
+    MOD             shift and go to state 37
+    CONS            shift and go to state 38
+    EXP             shift and go to state 39
+
+  ! LBRACKET        [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! PLUS            [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! MINUS           [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! TIMES           [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! DIVIDE          [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! LT              [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! LTE             [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! GT              [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! GTE             [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! EQ              [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! NOTEQ           [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! AND             [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! OR              [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! IN              [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! DIV             [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! MOD             [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! CONS            [ reduce using rule 23 (expression -> uni_op expression .) ]
+  ! EXP             [ reduce using rule 23 (expression -> uni_op expression .) ]
+
+    bin_op                         shift and go to state 21
+
+state 43
+
+    (40) list -> LBRACKET expression . list_tail
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (42) list_tail -> . COMMA expression list_tail
+    (43) list_tail -> . RBRACKET
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+
+    LBRACKET        shift and go to state 22
+    COMMA           shift and go to state 52
+    RBRACKET        shift and go to state 51
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    LT              shift and go to state 27
+    LTE             shift and go to state 28
+    GT              shift and go to state 29
+    GTE             shift and go to state 30
+    EQ              shift and go to state 31
+    NOTEQ           shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    IN              shift and go to state 35
+    DIV             shift and go to state 36
+    MOD             shift and go to state 37
+    CONS            shift and go to state 38
+    EXP             shift and go to state 39
+
+    list_tail                      shift and go to state 50
+    bin_op                         shift and go to state 21
+
+state 44
+
+    (41) list -> LBRACKET RBRACKET .
+
+    SEMICOLON       reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    LBRACKET        reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    PLUS            reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    MINUS           reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    TIMES           reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    DIVIDE          reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    LT              reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    LTE             reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    GT              reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    GTE             reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    EQ              reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    NOTEQ           reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    AND             reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    OR              reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    IN              reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    DIV             reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    MOD             reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    CONS            reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    EXP             reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    RPAREN          reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    COMMA           reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    RBRACKET        reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    LPAREN          reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    REAL            reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    INTEGER         reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    STRING          reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    NOT             reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    TRUE            reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    FALSE           reduce using rule 41 (list -> LBRACKET RBRACKET .)
+    HASH            reduce using rule 41 (list -> LBRACKET RBRACKET .)
+
+
+state 45
+
+    (33) hash_expression -> HASH expression . expression
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LBRACKET        shift and go to state 54
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 55
+    PLUS            shift and go to state 23
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    LT              shift and go to state 27
+    LTE             shift and go to state 28
+    GT              shift and go to state 29
+    GTE             shift and go to state 30
+    EQ              shift and go to state 31
+    NOTEQ           shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    IN              shift and go to state 35
+    DIV             shift and go to state 36
+    MOD             shift and go to state 37
+    CONS            shift and go to state 38
+    EXP             shift and go to state 39
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    expression                     shift and go to state 53
+    bin_op                         shift and go to state 21
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 46
+
+    (22) expression -> expression bin_op expression .
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+
+  ! shift/reduce conflict for LBRACKET resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NOTEQ resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IN resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for CONS resolved as shift
+  ! shift/reduce conflict for EXP resolved as shift
+    SEMICOLON       reduce using rule 22 (expression -> expression bin_op expression .)
+    RPAREN          reduce using rule 22 (expression -> expression bin_op expression .)
+    COMMA           reduce using rule 22 (expression -> expression bin_op expression .)
+    RBRACKET        reduce using rule 22 (expression -> expression bin_op expression .)
+    LPAREN          reduce using rule 22 (expression -> expression bin_op expression .)
+    REAL            reduce using rule 22 (expression -> expression bin_op expression .)
+    INTEGER         reduce using rule 22 (expression -> expression bin_op expression .)
+    STRING          reduce using rule 22 (expression -> expression bin_op expression .)
+    NOT             reduce using rule 22 (expression -> expression bin_op expression .)
+    TRUE            reduce using rule 22 (expression -> expression bin_op expression .)
+    FALSE           reduce using rule 22 (expression -> expression bin_op expression .)
+    HASH            reduce using rule 22 (expression -> expression bin_op expression .)
+    LBRACKET        shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    LT              shift and go to state 27
+    LTE             shift and go to state 28
+    GT              shift and go to state 29
+    GTE             shift and go to state 30
+    EQ              shift and go to state 31
+    NOTEQ           shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    IN              shift and go to state 35
+    DIV             shift and go to state 36
+    MOD             shift and go to state 37
+    CONS            shift and go to state 38
+    EXP             shift and go to state 39
+
+  ! LBRACKET        [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! PLUS            [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! MINUS           [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! TIMES           [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! DIVIDE          [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! LT              [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! LTE             [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! GT              [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! GTE             [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! EQ              [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! NOTEQ           [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! AND             [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! OR              [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! IN              [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! DIV             [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! MOD             [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! CONS            [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+  ! EXP             [ reduce using rule 22 (expression -> expression bin_op expression .) ]
+
+    bin_op                         shift and go to state 21
+
+state 47
+
+    (37) index_expression -> expression LBRACKET expression . RBRACKET
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+
+    RBRACKET        shift and go to state 56
+    LBRACKET        shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    LT              shift and go to state 27
+    LTE             shift and go to state 28
+    GT              shift and go to state 29
+    GTE             shift and go to state 30
+    EQ              shift and go to state 31
+    NOTEQ           shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    IN              shift and go to state 35
+    DIV             shift and go to state 36
+    MOD             shift and go to state 37
+    CONS            shift and go to state 38
+    EXP             shift and go to state 39
+
+    bin_op                         shift and go to state 21
+
+state 48
+
+    (2) expression -> LPAREN expression RPAREN .
+
+    SEMICOLON       reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    LBRACKET        reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    LT              reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    LTE             reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    GT              reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    GTE             reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    EQ              reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    NOTEQ           reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    AND             reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    OR              reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    IN              reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    DIV             reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    MOD             reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    CONS            reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    EXP             reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    LPAREN          reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    REAL            reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    INTEGER         reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    STRING          reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    NOT             reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    TRUE            reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    FALSE           reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+    HASH            reduce using rule 2 (expression -> LPAREN expression RPAREN .)
+
+
+state 49
+
+    (34) tuple -> LPAREN expression COMMA . tuple_tail
+    (35) tuple_tail -> . expression COMMA tuple_tail
+    (36) tuple_tail -> . expression RPAREN
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    expression                     shift and go to state 57
+    tuple_tail                     shift and go to state 58
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 50
+
+    (40) list -> LBRACKET expression list_tail .
+
+    SEMICOLON       reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    LBRACKET        reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    PLUS            reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    MINUS           reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    TIMES           reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    DIVIDE          reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    LT              reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    LTE             reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    GT              reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    GTE             reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    EQ              reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    NOTEQ           reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    AND             reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    OR              reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    IN              reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    DIV             reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    MOD             reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    CONS            reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    EXP             reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    RPAREN          reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    COMMA           reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    RBRACKET        reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    LPAREN          reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    REAL            reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    INTEGER         reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    STRING          reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    NOT             reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    TRUE            reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    FALSE           reduce using rule 40 (list -> LBRACKET expression list_tail .)
+    HASH            reduce using rule 40 (list -> LBRACKET expression list_tail .)
+
+
+state 51
+
+    (43) list_tail -> RBRACKET .
+
+    SEMICOLON       reduce using rule 43 (list_tail -> RBRACKET .)
+    LBRACKET        reduce using rule 43 (list_tail -> RBRACKET .)
+    PLUS            reduce using rule 43 (list_tail -> RBRACKET .)
+    MINUS           reduce using rule 43 (list_tail -> RBRACKET .)
+    TIMES           reduce using rule 43 (list_tail -> RBRACKET .)
+    DIVIDE          reduce using rule 43 (list_tail -> RBRACKET .)
+    LT              reduce using rule 43 (list_tail -> RBRACKET .)
+    LTE             reduce using rule 43 (list_tail -> RBRACKET .)
+    GT              reduce using rule 43 (list_tail -> RBRACKET .)
+    GTE             reduce using rule 43 (list_tail -> RBRACKET .)
+    EQ              reduce using rule 43 (list_tail -> RBRACKET .)
+    NOTEQ           reduce using rule 43 (list_tail -> RBRACKET .)
+    AND             reduce using rule 43 (list_tail -> RBRACKET .)
+    OR              reduce using rule 43 (list_tail -> RBRACKET .)
+    IN              reduce using rule 43 (list_tail -> RBRACKET .)
+    DIV             reduce using rule 43 (list_tail -> RBRACKET .)
+    MOD             reduce using rule 43 (list_tail -> RBRACKET .)
+    CONS            reduce using rule 43 (list_tail -> RBRACKET .)
+    EXP             reduce using rule 43 (list_tail -> RBRACKET .)
+    RPAREN          reduce using rule 43 (list_tail -> RBRACKET .)
+    COMMA           reduce using rule 43 (list_tail -> RBRACKET .)
+    RBRACKET        reduce using rule 43 (list_tail -> RBRACKET .)
+    LPAREN          reduce using rule 43 (list_tail -> RBRACKET .)
+    REAL            reduce using rule 43 (list_tail -> RBRACKET .)
+    INTEGER         reduce using rule 43 (list_tail -> RBRACKET .)
+    STRING          reduce using rule 43 (list_tail -> RBRACKET .)
+    NOT             reduce using rule 43 (list_tail -> RBRACKET .)
+    TRUE            reduce using rule 43 (list_tail -> RBRACKET .)
+    FALSE           reduce using rule 43 (list_tail -> RBRACKET .)
+    HASH            reduce using rule 43 (list_tail -> RBRACKET .)
+
+
+state 52
+
+    (42) list_tail -> COMMA . expression list_tail
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    expression                     shift and go to state 59
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 53
+
+    (33) hash_expression -> HASH expression expression .
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+
+  ! shift/reduce conflict for LBRACKET resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NOTEQ resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IN resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for CONS resolved as shift
+  ! shift/reduce conflict for EXP resolved as shift
+    SEMICOLON       reduce using rule 33 (hash_expression -> HASH expression expression .)
+    RPAREN          reduce using rule 33 (hash_expression -> HASH expression expression .)
+    COMMA           reduce using rule 33 (hash_expression -> HASH expression expression .)
+    RBRACKET        reduce using rule 33 (hash_expression -> HASH expression expression .)
+    LPAREN          reduce using rule 33 (hash_expression -> HASH expression expression .)
+    REAL            reduce using rule 33 (hash_expression -> HASH expression expression .)
+    INTEGER         reduce using rule 33 (hash_expression -> HASH expression expression .)
+    STRING          reduce using rule 33 (hash_expression -> HASH expression expression .)
+    NOT             reduce using rule 33 (hash_expression -> HASH expression expression .)
+    TRUE            reduce using rule 33 (hash_expression -> HASH expression expression .)
+    FALSE           reduce using rule 33 (hash_expression -> HASH expression expression .)
+    HASH            reduce using rule 33 (hash_expression -> HASH expression expression .)
+    LBRACKET        shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    LT              shift and go to state 27
+    LTE             shift and go to state 28
+    GT              shift and go to state 29
+    GTE             shift and go to state 30
+    EQ              shift and go to state 31
+    NOTEQ           shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    IN              shift and go to state 35
+    DIV             shift and go to state 36
+    MOD             shift and go to state 37
+    CONS            shift and go to state 38
+    EXP             shift and go to state 39
+
+  ! LBRACKET        [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! PLUS            [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! MINUS           [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! TIMES           [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! DIVIDE          [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! LT              [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! LTE             [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! GT              [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! GTE             [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! EQ              [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! NOTEQ           [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! AND             [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! OR              [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! IN              [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! DIV             [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! MOD             [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! CONS            [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+  ! EXP             [ reduce using rule 33 (hash_expression -> HASH expression expression .) ]
+
+    bin_op                         shift and go to state 21
+
+state 54
+
+    (37) index_expression -> expression LBRACKET . expression RBRACKET
+    (40) list -> LBRACKET . expression list_tail
+    (41) list -> LBRACKET . RBRACKET
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    RBRACKET        shift and go to state 44
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    expression                     shift and go to state 60
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 55
+
+    (4) expression -> MINUS . expression
+    (6) bin_op -> MINUS .
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LPAREN          reduce using rule 6 (bin_op -> MINUS .)
+    MINUS           reduce using rule 6 (bin_op -> MINUS .)
+    REAL            reduce using rule 6 (bin_op -> MINUS .)
+    INTEGER         reduce using rule 6 (bin_op -> MINUS .)
+    STRING          reduce using rule 6 (bin_op -> MINUS .)
+    NOT             reduce using rule 6 (bin_op -> MINUS .)
+    LBRACKET        reduce using rule 6 (bin_op -> MINUS .)
+    TRUE            reduce using rule 6 (bin_op -> MINUS .)
+    FALSE           reduce using rule 6 (bin_op -> MINUS .)
+    HASH            reduce using rule 6 (bin_op -> MINUS .)
+
+  ! LPAREN          [ shift and go to state 3 ]
+  ! MINUS           [ shift and go to state 5 ]
+  ! REAL            [ shift and go to state 7 ]
+  ! INTEGER         [ shift and go to state 8 ]
+  ! STRING          [ shift and go to state 9 ]
+  ! NOT             [ shift and go to state 15 ]
+  ! LBRACKET        [ shift and go to state 16 ]
+  ! TRUE            [ shift and go to state 17 ]
+  ! FALSE           [ shift and go to state 18 ]
+  ! HASH            [ shift and go to state 19 ]
+
+    expression                     shift and go to state 41
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 56
+
+    (37) index_expression -> expression LBRACKET expression RBRACKET .
+
+    SEMICOLON       reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    LBRACKET        reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    PLUS            reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    MINUS           reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    TIMES           reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    DIVIDE          reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    LT              reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    LTE             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    GT              reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    GTE             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    EQ              reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    NOTEQ           reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    AND             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    OR              reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    IN              reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    DIV             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    MOD             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    CONS            reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    EXP             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    RPAREN          reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    LPAREN          reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    REAL            reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    INTEGER         reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    STRING          reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    NOT             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    TRUE            reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    FALSE           reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    HASH            reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+
+
+state 57
+
+    (35) tuple_tail -> expression . COMMA tuple_tail
+    (36) tuple_tail -> expression . RPAREN
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+
+    COMMA           shift and go to state 61
+    RPAREN          shift and go to state 62
+    LBRACKET        shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    LT              shift and go to state 27
+    LTE             shift and go to state 28
+    GT              shift and go to state 29
+    GTE             shift and go to state 30
+    EQ              shift and go to state 31
+    NOTEQ           shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    IN              shift and go to state 35
+    DIV             shift and go to state 36
+    MOD             shift and go to state 37
+    CONS            shift and go to state 38
+    EXP             shift and go to state 39
+
+    bin_op                         shift and go to state 21
+
+state 58
+
+    (34) tuple -> LPAREN expression COMMA tuple_tail .
+
+    SEMICOLON       reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    LBRACKET        reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    PLUS            reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    MINUS           reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    TIMES           reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    DIVIDE          reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    LT              reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    LTE             reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    GT              reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    GTE             reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    EQ              reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    NOTEQ           reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    AND             reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    OR              reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    IN              reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    DIV             reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    MOD             reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    CONS            reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    EXP             reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    RPAREN          reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    COMMA           reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    RBRACKET        reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    LPAREN          reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    REAL            reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    INTEGER         reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    STRING          reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    NOT             reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    TRUE            reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    FALSE           reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+    HASH            reduce using rule 34 (tuple -> LPAREN expression COMMA tuple_tail .)
+
+
+state 59
+
+    (42) list_tail -> COMMA expression . list_tail
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (42) list_tail -> . COMMA expression list_tail
+    (43) list_tail -> . RBRACKET
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+
+    LBRACKET        shift and go to state 22
+    COMMA           shift and go to state 52
+    RBRACKET        shift and go to state 51
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    LT              shift and go to state 27
+    LTE             shift and go to state 28
+    GT              shift and go to state 29
+    GTE             shift and go to state 30
+    EQ              shift and go to state 31
+    NOTEQ           shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    IN              shift and go to state 35
+    DIV             shift and go to state 36
+    MOD             shift and go to state 37
+    CONS            shift and go to state 38
+    EXP             shift and go to state 39
+
+    list_tail                      shift and go to state 63
+    bin_op                         shift and go to state 21
+
+state 60
+
+    (37) index_expression -> expression LBRACKET expression . RBRACKET
+    (40) list -> LBRACKET expression . list_tail
+    (22) expression -> expression . bin_op expression
+    (37) index_expression -> expression . LBRACKET expression RBRACKET
+    (42) list_tail -> . COMMA expression list_tail
+    (43) list_tail -> . RBRACKET
+    (5) bin_op -> . PLUS
+    (6) bin_op -> . MINUS
+    (7) bin_op -> . TIMES
+    (8) bin_op -> . DIVIDE
+    (9) bin_op -> . LT
+    (10) bin_op -> . LTE
+    (11) bin_op -> . GT
+    (12) bin_op -> . GTE
+    (13) bin_op -> . EQ
+    (14) bin_op -> . NOTEQ
+    (15) bin_op -> . AND
+    (16) bin_op -> . OR
+    (17) bin_op -> . IN
+    (18) bin_op -> . DIV
+    (19) bin_op -> . MOD
+    (20) bin_op -> . CONS
+    (21) bin_op -> . EXP
+
+    RBRACKET        shift and go to state 64
+    LBRACKET        shift and go to state 22
+    COMMA           shift and go to state 52
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    LT              shift and go to state 27
+    LTE             shift and go to state 28
+    GT              shift and go to state 29
+    GTE             shift and go to state 30
+    EQ              shift and go to state 31
+    NOTEQ           shift and go to state 32
+    AND             shift and go to state 33
+    OR              shift and go to state 34
+    IN              shift and go to state 35
+    DIV             shift and go to state 36
+    MOD             shift and go to state 37
+    CONS            shift and go to state 38
+    EXP             shift and go to state 39
+
+    list_tail                      shift and go to state 50
+    bin_op                         shift and go to state 21
+
+state 61
+
+    (35) tuple_tail -> expression COMMA . tuple_tail
+    (35) tuple_tail -> . expression COMMA tuple_tail
+    (36) tuple_tail -> . expression RPAREN
+    (2) expression -> . LPAREN expression RPAREN
+    (3) expression -> . value
+    (4) expression -> . MINUS expression
+    (22) expression -> . expression bin_op expression
+    (23) expression -> . uni_op expression
+    (25) value -> . REAL
+    (26) value -> . INTEGER
+    (27) value -> . STRING
+    (28) value -> . list
+    (29) value -> . bool
+    (30) value -> . index_expression
+    (31) value -> . tuple
+    (32) value -> . hash_expression
+    (24) uni_op -> . NOT
+    (40) list -> . LBRACKET expression list_tail
+    (41) list -> . LBRACKET RBRACKET
+    (38) bool -> . TRUE
+    (39) bool -> . FALSE
+    (37) index_expression -> . expression LBRACKET expression RBRACKET
+    (34) tuple -> . LPAREN expression COMMA tuple_tail
+    (33) hash_expression -> . HASH expression expression
+
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    REAL            shift and go to state 7
+    INTEGER         shift and go to state 8
+    STRING          shift and go to state 9
+    NOT             shift and go to state 15
+    LBRACKET        shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    HASH            shift and go to state 19
+
+    expression                     shift and go to state 57
+    tuple_tail                     shift and go to state 65
+    value                          shift and go to state 4
+    uni_op                         shift and go to state 6
+    list                           shift and go to state 10
+    bool                           shift and go to state 11
+    index_expression               shift and go to state 12
+    tuple                          shift and go to state 13
+    hash_expression                shift and go to state 14
+
+state 62
+
+    (36) tuple_tail -> expression RPAREN .
+
+    SEMICOLON       reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    LBRACKET        reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    PLUS            reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    MINUS           reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    TIMES           reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    DIVIDE          reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    LT              reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    LTE             reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    GT              reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    GTE             reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    EQ              reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    NOTEQ           reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    AND             reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    OR              reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    IN              reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    DIV             reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    MOD             reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    CONS            reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    EXP             reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    RPAREN          reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    COMMA           reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    RBRACKET        reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    LPAREN          reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    REAL            reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    INTEGER         reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    STRING          reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    NOT             reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    TRUE            reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    FALSE           reduce using rule 36 (tuple_tail -> expression RPAREN .)
+    HASH            reduce using rule 36 (tuple_tail -> expression RPAREN .)
+
+
+state 63
+
+    (42) list_tail -> COMMA expression list_tail .
+
+    SEMICOLON       reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    LBRACKET        reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    PLUS            reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    MINUS           reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    TIMES           reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    DIVIDE          reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    LT              reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    LTE             reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    GT              reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    GTE             reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    EQ              reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    NOTEQ           reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    AND             reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    OR              reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    IN              reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    DIV             reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    MOD             reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    CONS            reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    EXP             reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    RPAREN          reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    COMMA           reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    RBRACKET        reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    LPAREN          reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    REAL            reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    INTEGER         reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    STRING          reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    NOT             reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    TRUE            reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    FALSE           reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+    HASH            reduce using rule 42 (list_tail -> COMMA expression list_tail .)
+
+
+state 64
+
+    (37) index_expression -> expression LBRACKET expression RBRACKET .
+    (43) list_tail -> RBRACKET .
+
+  ! reduce/reduce conflict for LBRACKET resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for PLUS resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for MINUS resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for TIMES resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for DIVIDE resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for LT resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for LTE resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for GT resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for GTE resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for EQ resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for NOTEQ resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for AND resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for OR resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for IN resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for DIV resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for MOD resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for CONS resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for EXP resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for REAL resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for INTEGER resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for STRING resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for NOT resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for TRUE resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for FALSE resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+  ! reduce/reduce conflict for HASH resolved using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    LBRACKET        reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    LPAREN          reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    MINUS           reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    PLUS            reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    TIMES           reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    DIVIDE          reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    LT              reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    LTE             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    GT              reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    GTE             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    EQ              reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    NOTEQ           reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    AND             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    OR              reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    IN              reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    DIV             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    MOD             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    CONS            reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    EXP             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    REAL            reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    INTEGER         reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    STRING          reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    NOT             reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    TRUE            reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    FALSE           reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    HASH            reduce using rule 37 (index_expression -> expression LBRACKET expression RBRACKET .)
+    SEMICOLON       reduce using rule 43 (list_tail -> RBRACKET .)
+    RPAREN          reduce using rule 43 (list_tail -> RBRACKET .)
+    COMMA           reduce using rule 43 (list_tail -> RBRACKET .)
+    RBRACKET        reduce using rule 43 (list_tail -> RBRACKET .)
+
+  ! LBRACKET        [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! PLUS            [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! MINUS           [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! TIMES           [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! DIVIDE          [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! LT              [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! LTE             [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! GT              [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! GTE             [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! EQ              [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! NOTEQ           [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! AND             [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! OR              [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! IN              [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! DIV             [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! MOD             [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! CONS            [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! EXP             [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! LPAREN          [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! REAL            [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! INTEGER         [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! STRING          [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! NOT             [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! TRUE            [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! FALSE           [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+  ! HASH            [ reduce using rule 43 (list_tail -> RBRACKET .) ]
+
+
+state 65
+
+    (35) tuple_tail -> expression COMMA tuple_tail .
+
+    SEMICOLON       reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    LBRACKET        reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    PLUS            reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    MINUS           reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    TIMES           reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    DIVIDE          reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    LT              reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    LTE             reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    GT              reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    GTE             reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    EQ              reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    NOTEQ           reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    AND             reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    OR              reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    IN              reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    DIV             reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    MOD             reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    CONS            reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    EXP             reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    RPAREN          reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    COMMA           reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    RBRACKET        reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    LPAREN          reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    REAL            reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    INTEGER         reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    STRING          reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    NOT             reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    TRUE            reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    FALSE           reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+    HASH            reduce using rule 35 (tuple_tail -> expression COMMA tuple_tail .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for LBRACKET in state 42 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 42 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 42 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 42 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 42 resolved as shift
+WARNING: shift/reduce conflict for LT in state 42 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 42 resolved as shift
+WARNING: shift/reduce conflict for GT in state 42 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 42 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 42 resolved as shift
+WARNING: shift/reduce conflict for NOTEQ in state 42 resolved as shift
+WARNING: shift/reduce conflict for AND in state 42 resolved as shift
+WARNING: shift/reduce conflict for OR in state 42 resolved as shift
+WARNING: shift/reduce conflict for IN in state 42 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 42 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 42 resolved as shift
+WARNING: shift/reduce conflict for CONS in state 42 resolved as shift
+WARNING: shift/reduce conflict for EXP in state 42 resolved as shift
+WARNING: shift/reduce conflict for LBRACKET in state 46 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 46 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 46 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 46 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 46 resolved as shift
+WARNING: shift/reduce conflict for LT in state 46 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 46 resolved as shift
+WARNING: shift/reduce conflict for GT in state 46 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 46 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 46 resolved as shift
+WARNING: shift/reduce conflict for NOTEQ in state 46 resolved as shift
+WARNING: shift/reduce conflict for AND in state 46 resolved as shift
+WARNING: shift/reduce conflict for OR in state 46 resolved as shift
+WARNING: shift/reduce conflict for IN in state 46 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 46 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 46 resolved as shift
+WARNING: shift/reduce conflict for CONS in state 46 resolved as shift
+WARNING: shift/reduce conflict for EXP in state 46 resolved as shift
+WARNING: shift/reduce conflict for LBRACKET in state 53 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 53 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 53 resolved as shift
+WARNING: shift/reduce conflict for LT in state 53 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 53 resolved as shift
+WARNING: shift/reduce conflict for GT in state 53 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 53 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 53 resolved as shift
+WARNING: shift/reduce conflict for NOTEQ in state 53 resolved as shift
+WARNING: shift/reduce conflict for AND in state 53 resolved as shift
+WARNING: shift/reduce conflict for OR in state 53 resolved as shift
+WARNING: shift/reduce conflict for IN in state 53 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 53 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 53 resolved as shift
+WARNING: shift/reduce conflict for CONS in state 53 resolved as shift
+WARNING: shift/reduce conflict for EXP in state 53 resolved as shift
+WARNING: reduce/reduce conflict in state 64 resolved using rule (index_expression -> expression LBRACKET expression RBRACKET)
+WARNING: rejected rule (list_tail -> RBRACKET) in state 64

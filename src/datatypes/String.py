@@ -1,4 +1,4 @@
-from Decorators import check_type_match
+from src.datatypes.Decorators import check_type_match
 
 import src.datatypes.Integer as Integer
 import src.datatypes.Boolean as Boolean
@@ -34,8 +34,8 @@ class String:
     def __ne__(self, other):
         return Boolean.Boolean(self.value != other.value)
 
-    def __repr__(self, other):
-        return self.value
+    def __repr__(self):
+        return "'{}'".format(self.value)
 
     def __len__(self):
         return len(self.value)

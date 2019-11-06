@@ -1,0 +1,4 @@
+"hello" + ' world';
+'world';
+'"Hello world!"' + " n ";
+'My' + ' ' + 'name is' + ' steven';
