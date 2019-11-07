@@ -15,11 +15,11 @@ class List:
     @check_type_match
     def __add__(self, other):
         if len(other) == 0:
-            return List(self.value)
+            return List(self.value.copy())
         elif len(self) == 0:
-            return List(other.value)
+            return List(other.value.copy())
         else:
-            return List(self.value + other.value)
+            return List(self.value.copy() + other.value.copy())
 
     def prepend(self, x):
         l = self.value.copy()

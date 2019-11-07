@@ -7,21 +7,23 @@ import argparse
 from src.parser.SBMLParser import SBMLParser
 
 def run_console(parser):
-    run_console = True
+    keep_running = True
     try:
-        while run_console:
+        while keep_running:
             line = input("> ")
             if line == '.quit':
-                run_console = False
+                keep_running = False
             else:
-                parser.parse(line)
+                result = parser.parse(line);
+                if result is not None: print(result)
     except Exception as e:
         print(e)
 
 def run_file(fp, parser):
     text   = fp.read()
     for line in text.split('\n')[:-1]:
-        parser.parse(line);
+        result = parser.parse(line);
+        if result is not None: print(result)
 
 def main(fp, debug=False, **kwargs):
     parser = SBMLParser(debug=debug, **kwargs)
@@ -43,10 +45,5 @@ if __name__ == '__main__':
                         default=False,
                         action='store_true',
                         help='enable debugging (for ply)')
-    parser.add_argument('--print_ast',
-                        '-p',
-                        default=False,
-                        action='store_true',
-                        help='prints the AST')
     args = vars(parser.parse_args())
     main(**args)
