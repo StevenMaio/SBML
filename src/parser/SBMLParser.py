@@ -38,7 +38,6 @@ class SBMLParser(object):
         'statement : expression SEMICOLON'
         try:
             p[0] = p[1]
-            import pdb; pdb.set_trace()
             r = p[1].evaluate()
             print(r)
         except Exception as e:

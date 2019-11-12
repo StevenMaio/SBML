@@ -24,11 +24,6 @@ class BinaryOperation(Expression):
         y = self._y.evaluate()
         return self._operation(x,y)
 
-    def __repr__(self):
-        return 'BIN-OP: ({}, ({}, {}))'.format(self._operation,
-                                               self._x,
-                                               self._y)
-
 class UnitaryOperation(Expression):
 
     def __init__(self, operation, x):
@@ -43,9 +38,6 @@ class UnitaryOperation(Expression):
             self._result = self._operation(x)
         return self._result
 
-    def __repr__(self):
-        return 'UNI-OP: ({}, {})'.format(self._operation,
-                                         self._x)
 class Value(Expression):
 
     def __init__(self, value):
@@ -54,9 +46,6 @@ class Value(Expression):
 
     def evaluate(self):
         return self._value
-
-    def __repr__(self):
-        return str(self._value)
 
     @property
     def value(self):
