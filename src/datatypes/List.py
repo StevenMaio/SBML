@@ -6,11 +6,11 @@ import src.datatypes.Real as Real
 
 class List:
 
-    def __init__(self, value=[]):
+    def __init__(self, value=None):
         '''
         Initialize a List object with value value
         '''
-        self._value = value
+        self._value = value or []
 
     @check_type_match
     def __add__(self, other):
@@ -22,9 +22,8 @@ class List:
             return List(self.value.copy() + other.value.copy())
 
     def prepend(self, x):
-        l = self.value.copy()
-        l.insert(0, x)
-        return List(l)
+        self.value.insert(0,x)
+        return self
 
     def __contains__(self, x):
         return Boolean.Boolean(x in self.value)

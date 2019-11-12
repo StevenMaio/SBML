@@ -15,7 +15,6 @@ def run_console(parser):
                 keep_running = False
             else:
                 result = parser.parse(line);
-                if result is not None: print(result)
     except Exception as e:
         print(e)
 
