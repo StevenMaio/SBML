@@ -23,6 +23,10 @@ class SBMLTokenizer(object):
         'orelse':  'OR',
         'True':    'TRUE',
         'False':   'FALSE',
+        'print':   'PRINT',
+        'if':      'IF',
+        'else':    'ELSE',
+        'while':   'WHILE',
     }
 
     tokens = [
@@ -38,6 +42,8 @@ class SBMLTokenizer(object):
         'RPAREN',
         'LBRACKET',
         'RBRACKET',
+        'LBRACE',
+        'RBRACE',
         'LTE',
         'GTE',
         'LT',
@@ -49,6 +55,7 @@ class SBMLTokenizer(object):
         'SEMICOLON',
         'STRING',
         'COMMA',
+        'ASSIGN',
     ] + list(reserved.values())
 
     # regular expression tokens
@@ -62,9 +69,12 @@ class SBMLTokenizer(object):
     t_RPAREN    = r'\)'
     t_LBRACKET  = r'\['
     t_RBRACKET  = r'\]'
+    t_LBRACE    = r'\{'
+    t_RBRACE    = r'\}'
     t_HASH      = r'\#'
     t_SEMICOLON = r';'
     t_COMMA     = r','
+    t_ASSIGN    = r'='
 
     t_LTE     = r'<='
     t_GTE     = r'>='

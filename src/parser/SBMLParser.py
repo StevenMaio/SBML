@@ -8,15 +8,16 @@ from src.datatypes.Tuple import Tuple
 from src.datatypes.Boolean import Boolean
 
 from src.parser.AST.Node import *
-from src.parser.AST.Function import *
+from src.parser.AST.Operator import *
 from src.parser.AST.Expression import *
+from src.parser.AST.Statement import *
 
 import ply.yacc as yacc
 
 class SBMLParser(object):
 
     tokens = SBMLTokenizer.tokens
-    start  = 'statement'
+    start  = 'start'
 
     precedence = (
         ('left', 'AND'),
@@ -34,14 +35,58 @@ class SBMLParser(object):
         ('left', 'MTUPLE'),
     )
 
-    def p_print_statement(self, p):
-        'statement : expression SEMICOLON'
+    def p_start(self, p):
+        'start : statement_list'
         try:
-            p[0] = p[1]
-            r = p[1].evaluate()
-            print(r)
-        except Exception as e:
-            print("SEMANTIC ERROR")
+            for statement in p[1]:
+                statement.execute()
+        except:
+            print('SEMANTIC ERROR')
+
+    def p_statement_list(self, p):
+        'statement_list : statement statement_list'
+        p[2].insert(0, p[1])
+        p[0] = p[2]
+
+    def p_empty_statement_list(self, p):
+        'statement_list : '
+        p[0] = []
+
+    def p_statement_if(self, p):
+        'statement : IF LPAREN expression RPAREN block else_clause'
+        p[0] = IfElseStatement(p[3], p[5], p[6])
+
+    def p_statement_else(self, p):
+        'else_clause : ELSE block'
+        p[0] = Block(p[2])
+
+    def p_statement_else_empty(self, p):
+        'else_clause : '
+        p[0] = Block()
+
+    def p_statement_while(self, p):
+        'statement : WHILE LPAREN expression RPAREN block'
+        p[0] = WhileStatement(p[3], p[5])
+
+    def p_statement_block(self, p):
+        'statement : block'
+        p[0] = p[1]
+
+    def p_block(self, p):
+        'block : LBRACE statement_list RBRACE'
+        p[0] = Block(p[2])
+
+    def p_print_statement(self, p):
+        'statement : PRINT LPAREN expression RPAREN SEMICOLON'
+        p[0] = PrintStatement(p[3])
+
+    def p_assignment_statement(self, p):
+        'statement : NAME ASSIGN expression SEMICOLON'
+        p[0] = AssignmentStatement(p[1], p[3], self.globals)
+
+    def p_expression(self, p):
+        'statement : expression SEMICOLON'
+        p[0] = Statement(p[1])
 
     def p_expression(self, p):
         'expression : LPAREN expression RPAREN'
@@ -53,7 +98,7 @@ class SBMLParser(object):
 
     def p_expression_uminus(self, p):
         'expression : MINUS expression %prec UMINUS'
-        p[0] = UnitaryOperation(Function(lambda x : -x, '-'),
+        p[0] = UnitaryOperation(Operator(lambda x : -x, '-'),
                                 p[2])
 
     def p_expression_bin_op(self, p):
@@ -97,27 +142,31 @@ class SBMLParser(object):
         '''
         p[0] = Value(p[1])
 
+    def p_expression_variable(self, p):
+        'expression : NAME'
+        p[0] = Variable(p[1], self.globals)
+
     def p_value(self, p):
         '''
-        expression : list_construction
-                   | index_expression
-                   | tuple_construction
-                   | hash_expression
+        expression : list_construction %prec MLIST
+                   | index_expression %prec INDEX_LIST
+                   | tuple_construction %prec MTUPLE
+                   | hash_expression %prec INDEX_TUPLE
         '''
         p[0] = p[1]
 
     def p_hash_expression(self, p):
-        'hash_expression : HASH expression expression %prec INDEX_TUPLE'
+        'hash_expression : HASH expression expression'
         t = p[3]
         index = p[2]
         p[0] = IndexExpression(t, index)
 
     def p_tuple(self, p):
-        'tuple_construction : LPAREN expression COMMA tuple_tail %prec MTUPLE'
+        'tuple_construction : LPAREN expression COMMA tuple_tail'
         p[0] = p[4].add_item(p[2])
 
     def p_empty_tuple(self, p):
-        'tuple_construction : LPAREN RPAREN %prec MTUPLE'
+        'tuple_construction : LPAREN RPAREN'
         p[0] = TupleConstruction()
 
     def p_tuple_tail(self, p):
@@ -134,7 +183,7 @@ class SBMLParser(object):
 
     def p_index(self, p):
         '''
-        index_expression : expression LBRACKET expression RBRACKET %prec INDEX_LIST
+        index_expression : expression LBRACKET expression RBRACKET
         '''
         l = p[1]
         index = p[3]
@@ -152,12 +201,12 @@ class SBMLParser(object):
 
     def p_list(self, p):
         '''
-        list_construction : LBRACKET expression list_tail %prec MLIST
+        list_construction : LBRACKET expression list_tail
         '''
         p[0] = p[3].add_item(p[2])
 
     def p_empty_list(self, p):
-        'list_construction : LBRACKET RBRACKET %prec MLIST'
+        'list_construction : LBRACKET RBRACKET'
         p[0] = ListConstruction()
 
     def p_list_tail(self, p):
@@ -181,6 +230,7 @@ class SBMLParser(object):
  
     def __init__(self, print_ast=False, debug=False, **kwargs):
         # NOTE: Do I need the print_ast arg?
+        self._globals = {}
         self._print_ast = print_ast
         self._debug     = debug
         self._tokenizer = SBMLTokenizer(**kwargs)
@@ -201,6 +251,10 @@ class SBMLParser(object):
     @property
     def debug(self):
         return self._debug
+
+    @property
+    def globals(self):
+        return self._globals
 
 if __name__ == '__main__':
     parser = SBMLParser()
