@@ -3,17 +3,18 @@ import src.datatypes.Integer as Integer
 
 class Tuple:
 
-    def __init__(self, value):
+    def __init__(self, value=()):
         self._value = value
 
     def __repr__(self):
         return str(self.value)
 
     def hash(self, index):
-        if index.value >= len(self):
+        if index.value > len(self):
             raise Exception
         else:
-            return self.value[index.value]
+            n = index.value - 1
+            return self.value[n]
 
     def __len__(self):
         return len(self.value)

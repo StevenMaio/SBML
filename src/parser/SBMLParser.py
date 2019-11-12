@@ -20,12 +20,15 @@ class SBMLParser(object):
         ('left', 'OR'),
         ('left', 'NOT'),
         ('left', 'LT', 'GT', 'LTE', 'GTE', 'EQ', 'NOTEQ'),
-        ('right', 'CONS'),
+        ('right', 'CONS', 'MLIST',),
         ('left', 'IN'),
         ('left', 'PLUS', 'MINUS'),
         ('left', 'TIMES', 'DIVIDE', 'DIV', 'MOD'),
         ('right', 'UMINUS'),
         ('right', 'EXP'),
+        ('left', 'INDEX_LIST'),
+        ('left', 'INDEX_TUPLE'),
+        ('left', 'MTUPLE'),
     )
 
     def p_print_statement(self, p):
@@ -46,6 +49,7 @@ class SBMLParser(object):
             p[0] = -p[2]
         except:
             print("SEMANTIC ERROR")
+            raise SyntaxError
 
     def p_expression_bin_op(self, p):
         '''
@@ -73,6 +77,7 @@ class SBMLParser(object):
             p[0] = f(x,y)
         except:
             print("SEMANTIC ERROR")
+            raise SyntaxError
 
     def p_expression_uni_op(self, p):
         '''
@@ -83,6 +88,7 @@ class SBMLParser(object):
             p[0] = not x
         except:
             print("SEMANTIC ERROR")
+            raise SyntaxError
 
 
     def p_term_number(self, p):
@@ -99,15 +105,19 @@ class SBMLParser(object):
         p[0] = p[1]
 
     def p_hash_expression(self, p):
-        'hash_expression : HASH expression expression'
+        'hash_expression : HASH expression expression %prec INDEX_TUPLE'
         t = p[3]
         index = p[2]
         p[0] = t.hash(index)
 
     def p_tuple(self, p):
-        'tuple : LPAREN expression COMMA tuple_tail'
+        'tuple : LPAREN expression COMMA tuple_tail %prec MTUPLE'
         t = [p[2]] + p[4]
         p[0] = Tuple(tuple(t))
+
+    def p_empty_tuple(self, p):
+        'tuple : LPAREN RPAREN %prec MTUPLE'
+        p[0] = Tuple()
 
     def p_tuple_tail(self, p):
         'tuple_tail : expression COMMA tuple_tail'
@@ -117,10 +127,13 @@ class SBMLParser(object):
         'tuple_tail : expression RPAREN'
         p[0] = [p[1]]
 
+    def p_tuple_tail_end_empty(self, p):
+        'tuple_tail : RPAREN'
+        p[0] = []
 
     def p_index(self, p):
         '''
-        index_expression : expression LBRACKET expression RBRACKET
+        index_expression : expression LBRACKET expression RBRACKET %prec INDEX_LIST
         '''
         try:
             l = p[1]
@@ -128,6 +141,7 @@ class SBMLParser(object):
             p[0] = l[index]
         except:
             print("SEMANTIC ERROR")
+            raise SyntaxError
 
     def p_bool(self, p):
         '''
@@ -141,12 +155,12 @@ class SBMLParser(object):
 
     def p_list(self, p):
         '''
-        list : LBRACKET expression list_tail
+        list : LBRACKET expression list_tail %prec MLIST
         '''
         p[0] = p[3].prepend(p[2])
 
     def p_empty_list(self, p):
-        'list : LBRACKET RBRACKET'
+        'list : LBRACKET RBRACKET %prec MLIST'
         p[0] = List()
 
     def p_list_tail(self, p):
@@ -164,7 +178,7 @@ class SBMLParser(object):
         # clear the input stream
         t = self._parser.token() 
         while t is not None:
-            if t.value == ';':
+            if str(t) == ';':
                 break
             t = self._parser.token() 
  

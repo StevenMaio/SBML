@@ -95,7 +95,7 @@ class SBMLTokenizer(object):
         t.lexer.lineno += len(t.value)
 
     def t_error(self, t):
-        print("Illegal character '%s'" % t.value[0])
+        # print("SYNTAX ERROR")
         t.lexer.skip(1)
 
     def t_NAME(self, t):
