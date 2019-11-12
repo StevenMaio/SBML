@@ -8,21 +8,24 @@ from src.parser.SBMLParser import SBMLParser
 
 def run_console(parser):
     keep_running = True
+    global_scope = parser.globals
     try:
         while keep_running:
             line = input("> ")
             if line == '.quit':
                 keep_running = False
+            elif line == '.names':
+                print(global_scope)
             else:
                 result = parser.parse(line);
+                if result is not None: result.execute();
     except Exception as e:
         print(e)
 
 def run_file(fp, parser):
     text   = fp.read()
-    for line in text.split('\n')[:-1]:
-        result = parser.parse(line);
-        if result is not None: print(result)
+    result = parser.parse(text);
+    if result is not None: result.execute()
 
 def main(fp, debug=False, **kwargs):
     parser = SBMLParser(debug=debug, **kwargs)
@@ -32,7 +35,7 @@ def main(fp, debug=False, **kwargs):
         run_file(fp, parser)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='runs an SBML file or starts a  console session if no file is given.')
+    parser = argparse.ArgumentParser(description='Interpreter for SBML. Runs a script if one is provided.')
     parser.add_argument('fp',
                         metavar='filename',
                         type=argparse.FileType('r'),

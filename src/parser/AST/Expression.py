@@ -93,3 +93,12 @@ class IndexExpression(Expression):
         else:
             r = collection.hash(index)
         return r
+
+class Variable(Expression):
+
+    def __init__(self, name, scope):
+        self._name  = name
+        self._scope = scope
+
+    def evaluate(self):
+        return self._scope[self._name]
