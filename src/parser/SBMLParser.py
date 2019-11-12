@@ -6,7 +6,10 @@ from src.parser.SBMLTokenizer import SBMLTokenizer
 from src.datatypes.List import List
 from src.datatypes.Tuple import Tuple
 from src.datatypes.Boolean import Boolean
-from src.parser.node.Node import *
+
+from src.parser.AST.Node import *
+from src.parser.AST.Function import *
+from src.parser.AST.Expression import *
 
 import ply.yacc as yacc
 
@@ -33,23 +36,26 @@ class SBMLParser(object):
 
     def p_print_statement(self, p):
         'statement : expression SEMICOLON'
-        p[0] = p[1]
+        try:
+            p[0] = p[1]
+            import pdb; pdb.set_trace()
+            r = p[1].evaluate()
+            print(r)
+        except Exception as e:
+            print("SEMANTIC ERROR")
 
     def p_expression(self, p):
         'expression : LPAREN expression RPAREN'
-        p[0] = p[2]
+        p[0] = Expression(p[2])
 
     def p_expression_term(self, p):
         'expression : value'
-        p[0] = p[1]
+        p[0] = Expression(p[1])
 
     def p_expression_uminus(self, p):
         'expression : MINUS expression %prec UMINUS'
-        try:
-            p[0] = -p[2]
-        except:
-            print("SEMANTIC ERROR")
-            raise SyntaxError
+        p[0] = UnitaryOperation(Function(lambda x : -x, '-'),
+                                p[2])
 
     def p_expression_bin_op(self, p):
         '''
@@ -71,36 +77,33 @@ class SBMLParser(object):
                    | expression CONS expression
                    | expression EXP expression
         '''
-        try:
-            x,op,y = p[1:4]
-            f = operations[op]
-            p[0] = f(x,y)
-        except:
-            print("SEMANTIC ERROR")
-            raise SyntaxError
+        x,op,y = p[1:4]
+        f = operations[op]
+        p[0] = BinaryOperation(f, x, y)
 
     def p_expression_uni_op(self, p):
         '''
         expression : NOT expression
         '''
-        try:
-            f,x = p[1:3]
-            p[0] = not x
-        except:
-            print("SEMANTIC ERROR")
-            raise SyntaxError
+        op,x = p[1:3]
+        f = operations(op)
+        p[0] = UnitaryOperation(f, x)
 
-
-    def p_term_number(self, p):
+    def p_value_literal(self, p):
         '''
         value : REAL
               | INTEGER
               | STRING
-              | list
               | bool
-              | index_expression
-              | tuple
-              | hash_expression
+        '''
+        p[0] = Value(p[1])
+
+    def p_value(self, p):
+        '''
+        expression : list_construction
+                   | index_expression
+                   | tuple_construction
+                   | hash_expression
         '''
         p[0] = p[1]
 
@@ -108,40 +111,35 @@ class SBMLParser(object):
         'hash_expression : HASH expression expression %prec INDEX_TUPLE'
         t = p[3]
         index = p[2]
-        p[0] = t.hash(index)
+        p[0] = IndexExpression(t, index)
 
     def p_tuple(self, p):
-        'tuple : LPAREN expression COMMA tuple_tail %prec MTUPLE'
-        t = [p[2]] + p[4]
-        p[0] = Tuple(tuple(t))
+        'tuple_construction : LPAREN expression COMMA tuple_tail %prec MTUPLE'
+        p[0] = p[4].add_item(p[2])
 
     def p_empty_tuple(self, p):
-        'tuple : LPAREN RPAREN %prec MTUPLE'
-        p[0] = Tuple()
+        'tuple_construction : LPAREN RPAREN %prec MTUPLE'
+        p[0] = TupleConstruction()
 
     def p_tuple_tail(self, p):
         'tuple_tail : expression COMMA tuple_tail'
-        p[0] = [p[1]] + p[3]
+        p[0] = p[3].add_item(p[1])
 
     def p_tuple_tail_end(self, p):
         'tuple_tail : expression RPAREN'
-        p[0] = [p[1]]
+        p[0] = TupleConstruction([p[1]])
 
     def p_tuple_tail_end_empty(self, p):
         'tuple_tail : RPAREN'
-        p[0] = []
+        p[0] = TupleConstruction()
 
     def p_index(self, p):
         '''
         index_expression : expression LBRACKET expression RBRACKET %prec INDEX_LIST
         '''
-        try:
-            l = p[1]
-            index = p[3]
-            p[0] = l[index]
-        except:
-            print("SEMANTIC ERROR")
-            raise SyntaxError
+        l = p[1]
+        index = p[3]
+        p[0] = IndexExpression(l, index)
 
     def p_bool(self, p):
         '''
@@ -155,23 +153,23 @@ class SBMLParser(object):
 
     def p_list(self, p):
         '''
-        list : LBRACKET expression list_tail %prec MLIST
+        list_construction : LBRACKET expression list_tail %prec MLIST
         '''
-        p[0] = p[3].prepend(p[2])
+        p[0] = p[3].add_item(p[2])
 
     def p_empty_list(self, p):
-        'list : LBRACKET RBRACKET %prec MLIST'
-        p[0] = List()
+        'list_construction : LBRACKET RBRACKET %prec MLIST'
+        p[0] = ListConstruction()
 
     def p_list_tail(self, p):
         '''
         list_tail : COMMA expression list_tail
         '''
-        p[0] = p[3].prepend(p[2])
+        p[0] = p[3].add_item(p[2])
 
     def p_list_tail_end(self, p):
         'list_tail : RBRACKET'
-        p[0] = List()
+        p[0] = ListConstruction()
 
     def p_error(self, p):
         print("SYNTAX ERROR")

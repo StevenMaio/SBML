@@ -3,8 +3,8 @@ import src.datatypes.Integer as Integer
 
 class Tuple:
 
-    def __init__(self, value=()):
-        self._value = value
+    def __init__(self, value=None):
+        self._value = value or ()
 
     def __repr__(self):
         return str(self.value)
