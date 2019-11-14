@@ -39,7 +39,6 @@ class Integer:
     def __floordiv__(self, other):
         return Integer(self.value//other.value)
 
-    @check_type_match
     def __eq__(self, other):
         return Boolean.Boolean(self.value == other.value)
 

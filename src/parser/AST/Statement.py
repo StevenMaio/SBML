@@ -31,6 +31,20 @@ class AssignmentStatement(Statement):
         result = self._expression.evaluate()
         self._scope[self._name] = result
 
+class ListAssignmentStatement(Statement):
+
+    def __init__(self, name, index_list, expression, scope):
+        Statement.__init__(self)
+        self._name = name
+        self._index_list = index_list
+        self._expression = expression
+        self._scope = scope
+
+    def execute(self):
+        result = self._expression.evaluate()
+        indices = self._index_list.evaluate()
+        self._scope[self._name][indices] = result 
+
 class Block(Statement):
 
     def __init__(self, statements=None):

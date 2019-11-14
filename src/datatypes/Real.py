@@ -31,7 +31,6 @@ class Real:
     def __truediv__(self, other):
         return Real(self.value / other.value)
 
-    @check_type_match
     def __eq__(self, other):
         return Boolean.Boolean(self.value == other.value)
 

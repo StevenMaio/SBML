@@ -23,7 +23,6 @@ class Boolean:
     def __or__(self, other):
         return Boolean(self.value or other.value)
 
-    @check_type_match
     def __eq__(self, other):
         return Boolean(self.value == other.value)
 

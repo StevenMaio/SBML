@@ -1,0 +1,19 @@
+l = [0,1,2,3,4];
+i = 0;
+
+while (l[i] <> 3)
+{
+    print(l[i]);
+    i = i + 1;
+}
+print(l);
+z = [[1],2,3];
+print(z[0][0]);
+{
+    {
+        print('innermost');
+    }
+    print('outer');
+}
+z[0] = 3;
+print(z);

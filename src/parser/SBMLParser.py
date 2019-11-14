@@ -40,7 +40,7 @@ class SBMLParser(object):
         try:
             for statement in p[1]:
                 statement.execute()
-        except:
+        except Exception as e:
             print('SEMANTIC ERROR')
 
     def p_statement_list(self, p):
@@ -58,7 +58,7 @@ class SBMLParser(object):
 
     def p_statement_else(self, p):
         'else_clause : ELSE block'
-        p[0] = Block(p[2])
+        p[0] = p[2]
 
     def p_statement_else_empty(self, p):
         'else_clause : '
@@ -83,6 +83,22 @@ class SBMLParser(object):
     def p_assignment_statement(self, p):
         'statement : NAME ASSIGN expression SEMICOLON'
         p[0] = AssignmentStatement(p[1], p[3], self.globals)
+
+    def p_list_assignment_statement(self, p):
+        'statement : NAME assign_index ASSIGN expression SEMICOLON'
+        p[0] = ListAssignmentStatement(p[1], p[2], p[4], self.globals)
+
+    def p_assign_index(self, p):
+        'assign_index : LBRACKET expression RBRACKET assign_index_list'
+        p[0] = p[4].add_item(p[2])
+
+    def p_assign_index_list(self, p):
+        'assign_index_list : LBRACKET expression RBRACKET assign_index_list'
+        p[0] = p[4].add_item(p[2])
+
+    def p_assign_index_list_end(self, p):
+        'assign_index_list : '
+        p[0] = ListConstruction()
 
     def p_expression(self, p):
         'statement : expression SEMICOLON'
@@ -228,10 +244,9 @@ class SBMLParser(object):
                 break
             t = self._parser.token() 
  
-    def __init__(self, print_ast=False, debug=False, **kwargs):
+    def __init__(self, debug=False, **kwargs):
         # NOTE: Do I need the print_ast arg?
         self._globals = {}
-        self._print_ast = print_ast
         self._debug     = debug
         self._tokenizer = SBMLTokenizer(**kwargs)
         self._parser    = yacc.yacc(module=self)
@@ -243,10 +258,6 @@ class SBMLParser(object):
         return self._parser.parse(s,
                                   lexer=self._tokenizer.lexer,
                                   debug=self.debug)
-
-    @property
-    def print_ast(self):
-        return self._print_ast
 
     @property
     def debug(self):
