@@ -80,6 +80,10 @@ class SBMLParser(object):
         'statement : PRINT LPAREN expression RPAREN SEMICOLON'
         p[0] = PrintStatement(p[3])
 
+    def p_expression_statement(self, p):
+        'statement : expression SEMICOLON'
+        p[0] = Statement(p[1])
+
     def p_assignment_statement(self, p):
         'statement : NAME ASSIGN expression SEMICOLON'
         p[0] = AssignmentStatement(p[1], p[3], self.globals)
@@ -146,7 +150,7 @@ class SBMLParser(object):
         expression : NOT expression
         '''
         op,x = p[1:3]
-        f = operations(op)
+        f = operations[op]
         p[0] = UnitaryOperation(f, x)
 
     def p_value_literal(self, p):
