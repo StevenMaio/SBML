@@ -1,4 +1,3 @@
-
 import src.datatypes.Integer as Integer
 
 class Tuple:

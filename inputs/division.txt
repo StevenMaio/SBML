@@ -1,0 +1,13 @@
+a = 307;
+b = 123;
+q = 0;
+
+while(a>b)
+{
+    a = a - b;
+    q = q + 1;
+}
+
+print("Quotient/Remainder");
+print(q);
+print(a);

@@ -1,0 +1,33 @@
+if (2>0)
+{
+    z=True;
+} else
+{
+    z=False;
+}
+print(z);
+
+if (2>0)
+{
+    z=3;
+} else
+{
+    z=4;
+}
+print(z);
+
+if (True)
+{
+    print('hi');
+}
+i=0;
+while(i<3)
+{
+    i = i + 1;
+}
+print(i);
+
+{
+    print("hello" + ' world!');
+}
+print('a' + 2);

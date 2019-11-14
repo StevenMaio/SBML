@@ -36,7 +36,16 @@ class List:
         else:
             return self.value[index]
 
-    @check_type_match
+    def __setitem__(self, index, value):
+        if type(index) == Integer.Integer:
+            self.value[index] = value
+        else:
+            current_list = self.value
+            indices = index.value
+            for n in indices[:-1]:
+                current_list = current_list[n]
+            current_list[indices[-1]] = value
+
     def __eq__(self, other):
         return Boolean.Boolean(self.value == other.value)
 
@@ -56,6 +65,7 @@ class List:
 
 if __name__ == '__main__':
     l = List()
+    z = Integer.Integer(0)
     n = Integer.Integer(2)
     m = Integer.Integer(-1)
     j = Integer.Integer(1)
@@ -63,6 +73,7 @@ if __name__ == '__main__':
     x = Real.Real(-0.32)
     l.prepend(n)
     l.prepend(m)
+    l.prepend(List([j]))
     print(l[Integer.Integer(1)])
     print(l)
     print(x)
@@ -70,3 +81,8 @@ if __name__ == '__main__':
     print(n in l)
     print(j in l)
     print(p in l)
+    l[j] = 'b'
+    print(l)
+    print(l[z][z])
+    l[z][z] = p
+    print(l)

@@ -26,7 +26,6 @@ class String:
         else:
             return Boolean.Boolean(x in self.value)
 
-    @check_type_match
     def __eq__(self, other):
         return Boolean.Boolean(self.value == other.value)
 
