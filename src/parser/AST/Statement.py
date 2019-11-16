@@ -1,3 +1,5 @@
+from src.datatypes.Boolean import Boolean
+
 class Statement:
 
     def __init__(self, expression=None):
@@ -64,7 +66,10 @@ class IfElseStatement(Statement):
         self._else_clause = else_clause or Block()
 
     def execute(self):
-        if self._condition.evaluate():
+        result = self._condition.evaluate()
+        if type(result) != Boolean:
+            raise Exception
+        elif result:
             self._if_clause.execute()
         else:
             self._else_clause.execute()
@@ -77,5 +82,9 @@ class WhileStatement(Statement):
         self._body = body
 
     def execute(self):
-        while self._condition.evaluate():
+        result = self._condition.evaluate()
+        while result:
+            if type(result) != Boolean:
+                raise Exception
             self._body.execute()
+            result = self._condition.evaluate()
