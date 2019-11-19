@@ -82,7 +82,7 @@ class SBMLParser(object):
 
     def p_expression_statement(self, p):
         'statement : expression SEMICOLON'
-        p[0] = Statement(p[1])
+        p[0] = ExpressionStatement(p[1])
 
     def p_assignment_statement(self, p):
         'statement : NAME ASSIGN expression SEMICOLON'

@@ -2,11 +2,20 @@ from src.datatypes.Boolean import Boolean
 
 class Statement:
 
-    def __init__(self, expression=None):
+    def __init__(self):
+        pass
+
+    def execute(self):
+        pass
+
+class ExpressionStatement:
+
+    def __init__(self, expression):
+        Statement.__init__(self)
         self._expression = expression
 
     def execute(self):
-        self._expression.execute()
+        self._expression.evaluate()
 
 class PrintStatement(Statement):
 
